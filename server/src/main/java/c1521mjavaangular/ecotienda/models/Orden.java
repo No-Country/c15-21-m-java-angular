@@ -18,7 +18,7 @@ public class Orden {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuarios usuarios;
-    @OneToOne(mappedBy = "orden")
+    @OneToOne
     @JoinColumn(name = "ordenDetalles_id")
     private OrdenDetalles detalles;
 

@@ -22,8 +22,6 @@ public class OrdenDetalles {
     @Column(name = "direccion")
     private String direccion;
 
-    @OneToOne
-    private Orden orden;
 
     @OneToOne
     private Productos productos;
