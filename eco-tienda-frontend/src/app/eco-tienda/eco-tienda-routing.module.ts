@@ -5,6 +5,7 @@ import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { DetailPageComponent } from './pages/detail-page/detail-page.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { SigninPageComponent } from './pages/signin-page/signin-page.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: 'home', component: HomePageComponent },
       { path: 'detail', component: DetailPageComponent },
       { path: 'list', component: ListPageComponent },
+      { path: 'signin', component: SigninPageComponent},
       { path: '**', redirectTo: 'home' },
     ],
   },
