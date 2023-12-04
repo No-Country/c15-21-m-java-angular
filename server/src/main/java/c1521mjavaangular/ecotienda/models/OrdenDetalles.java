@@ -23,7 +23,7 @@ public class OrdenDetalles {
     private String direccion;
 
 
-    @OneToOne
+    @ManyToOne
     private Productos productos;
 
 

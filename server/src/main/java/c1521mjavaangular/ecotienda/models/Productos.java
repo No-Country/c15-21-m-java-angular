@@ -4,12 +4,16 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.util.List;
 
 @Entity
 @Data
 @Table(name = "productos")
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Productos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +25,13 @@ public class Productos {
     private Integer precio;
     @Column(name = "stock")
     private Integer stock;
-    @ManyToOne
-    @JoinColumn(name ="categoria_id")
-    private Categorias categorias;
+    @ManyToMany
+    @JoinTable(
+            name = "producto_categoria",
+            joinColumns = @JoinColumn(name = "producto_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
+    private List<Categorias> categorias;
     @Column(name = "codigo")
     private String codigo;
     @Column(name = "imagen")
