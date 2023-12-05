@@ -1,4 +1,4 @@
-package c1521mjavaangular.ecotienda.models;
+package c1521mjavaangular.ecotienda.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
