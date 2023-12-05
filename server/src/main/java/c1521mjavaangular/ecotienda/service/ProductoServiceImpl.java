@@ -22,19 +22,18 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public Productos buscarProducto(Long id) {
+    public Productos buscarProducto(Integer id) {
         Productos productos = this.productoRepository.findById(id).orElse(null);
         return productos;
     }
 
     @Override
-    public void guardarProducto(Productos productos) {
-        this.productoRepository.save(productos);
-
+    public Productos guardarProducto(Productos productos) {
+        return this.productoRepository.save(productos);
     }
 
     @Override
-    public void eliminarProducto(Long id) {
+    public void eliminarProducto(Integer id) {
         this.productoRepository.deleteById(id);
 
     }

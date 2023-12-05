@@ -17,7 +17,7 @@ public class Usuarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
     @Column(name = "username")
     private String username;
     @Column(name = "email")
@@ -34,5 +34,11 @@ public class Usuarios {
     @OneToMany(mappedBy = "usuarios")
     private List<Orden> ordenes;
 
+    //de prueba
 
+
+    public Usuarios(Integer id, String username) {
+        this.id = id;
+        this.username = username;
+    }
 }
