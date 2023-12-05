@@ -18,7 +18,7 @@ services:
     container_name: java_db
     image: mysql:latest
     volumes:
-      - C:\Users\ivand\OneDrive\Escritorio\db:/var/lib/mysql
+      - /home/ivan/ecommerce-nocountry/db:/var/lib/mysql
     ports:
       - 3306:3306
     environment:
