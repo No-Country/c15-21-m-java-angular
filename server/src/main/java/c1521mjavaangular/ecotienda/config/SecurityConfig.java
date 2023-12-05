@@ -48,6 +48,12 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf
                         .disable()
                 )
+
+                .authorizeHttpRequests(authRequest->
+                        authRequest
+                                .requestMatchers("/auth/**","/token","/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/api-docs.yaml").permitAll()
+                )
+
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
@@ -56,6 +62,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/v1/test/**").permitAll()
                         .anyRequest().authenticated()
                 )
+
+
+
                 .authenticationProvider(authenticationProvider()).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
