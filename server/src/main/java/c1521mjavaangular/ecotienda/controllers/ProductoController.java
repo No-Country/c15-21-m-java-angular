@@ -1,8 +1,9 @@
 package c1521mjavaangular.ecotienda.controllers;
 
-import c1521mjavaangular.ecotienda.execeptions.RecursoNoEncontradoException;
+import c1521mjavaangular.ecotienda.exceptions.RecursoNoEncontradoException;
 import c1521mjavaangular.ecotienda.models.Productos;
-import c1521mjavaangular.ecotienda.service.ProductoService;
+import c1521mjavaangular.ecotienda.services.ProductoService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,17 +21,20 @@ public class ProductoController {
         ProductoService productoService;
 
         //http://url/api/administrador/productos
+        @Operation(summary = "Lista los productos en la base de datos")
         @GetMapping("/productos")
             public List<Productos> obtenerProductos() {
             return productoService.listarProductos();
     }
 
+        @Operation(summary = "agrega productos a la base de datos")
         @PostMapping("/productos")
             public Productos agregarProducto(@RequestBody Productos productos){
             return  this.productoService.guardarProducto(productos);
 
         }
 
+        @Operation(summary = "Busca un producto por id")
         @GetMapping("/productos/{id}")
             public ResponseEntity<Productos> obtenerProductoPorId(
                     @PathVariable int id){
@@ -40,6 +44,7 @@ public class ProductoController {
             else
                 throw new RecursoNoEncontradoException("No se Encontro el id : " + id);
         }
+        @Operation(summary = "actualiza un producto por su id")
         @PutMapping("/productos/{id}")
         public ResponseEntity<Productos> actualizarProducto(
                 @PathVariable int id,
@@ -57,6 +62,7 @@ public class ProductoController {
             return ResponseEntity.ok(productos);
         }
 
+        @Operation(summary = "elimina un producto por su id")
         @DeleteMapping("productos/{id}")
         public ResponseEntity<Map<String, Boolean>> eliminarProducto(@PathVariable int id){
             Productos productos = this.productoService.buscarProducto(id);

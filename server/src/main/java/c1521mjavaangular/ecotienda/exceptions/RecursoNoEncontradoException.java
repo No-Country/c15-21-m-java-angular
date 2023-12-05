@@ -1,4 +1,4 @@
-package c1521mjavaangular.ecotienda.execeptions;
+package c1521mjavaangular.ecotienda.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

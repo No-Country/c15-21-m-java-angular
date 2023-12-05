@@ -1,4 +1,4 @@
-package c1521mjavaangular.ecotienda.repository;
+package c1521mjavaangular.ecotienda.repositories;
 
 import c1521mjavaangular.ecotienda.models.Productos;
 import org.springframework.data.jpa.repository.EntityGraph;

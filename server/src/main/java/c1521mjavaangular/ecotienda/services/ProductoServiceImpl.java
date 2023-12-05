@@ -1,8 +1,8 @@
-package c1521mjavaangular.ecotienda.service;
+package c1521mjavaangular.ecotienda.services;
 
 
 import c1521mjavaangular.ecotienda.models.Productos;
-import c1521mjavaangular.ecotienda.repository.ProductoRepository;
+import c1521mjavaangular.ecotienda.repositories.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

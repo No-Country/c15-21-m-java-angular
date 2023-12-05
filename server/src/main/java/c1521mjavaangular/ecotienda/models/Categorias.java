@@ -2,6 +2,7 @@ package c1521mjavaangular.ecotienda.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @Table(name = "categorias")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 
 public class Categorias {
     @Id

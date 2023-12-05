@@ -1,4 +1,4 @@
-package c1521mjavaangular.ecotienda.service;
+package c1521mjavaangular.ecotienda.services;
 
 import c1521mjavaangular.ecotienda.models.Productos;
 
