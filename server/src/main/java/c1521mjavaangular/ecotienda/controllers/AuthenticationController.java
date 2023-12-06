@@ -17,12 +17,12 @@ public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
-    @PostMapping("/iniciarSesion")
+    @PostMapping("/registrarse")
     public JwtAuthenticationResponse signup(@RequestBody SignUpRequest request) {
         return authenticationService.signup(request);
     }
 
-    @PostMapping("/registrarse")
+    @PostMapping("/iniciarSesion")
     public JwtAuthenticationResponse signin(@RequestBody SignInRequest request) {
         return authenticationService.signin(request);
     }

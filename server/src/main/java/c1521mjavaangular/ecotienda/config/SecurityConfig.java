@@ -51,26 +51,28 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(authRequest->
                         authRequest
-                                .requestMatchers("/auth/**","/token","/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/api-docs.yaml").permitAll()
+                                .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/api-docs.yaml").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/v1/test/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/administrador/productos").permitAll()
+
+                                .requestMatchers(HttpMethod.POST, "/v1/iniciarSesion", "/v1/registrarse").permitAll()
+
+                                .requestMatchers(HttpMethod.PUT, "/v1/users/**").hasAnyRole("USER")
                 )
 
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
+
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/api/v1/signup", "/api/v1/signin").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/test/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/administrador/productos").permitAll()
 
                         .requestMatchers(HttpMethod.GET).hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.POST).hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT).hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.GET, "/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/**").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/**").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/**").permitAll()
                         .anyRequest().authenticated()
                 )
-
 
 
                 .authenticationProvider(authenticationProvider()).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

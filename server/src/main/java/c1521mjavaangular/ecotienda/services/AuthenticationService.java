@@ -30,6 +30,7 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.ROLE_USER)
+                .isEnabled(true)
                 .build();
 
         user = usuariosService.save(user);
