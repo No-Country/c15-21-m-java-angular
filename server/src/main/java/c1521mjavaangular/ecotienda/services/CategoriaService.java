@@ -1,6 +1,6 @@
 package c1521mjavaangular.ecotienda.services;
 
-import c1521mjavaangular.ecotienda.models.CategoriaDto;
+import c1521mjavaangular.ecotienda.dto.CategoriaDto;
 import c1521mjavaangular.ecotienda.models.Categorias;
 
 import java.util.List;
