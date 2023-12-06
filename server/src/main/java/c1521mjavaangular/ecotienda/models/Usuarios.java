@@ -41,6 +41,7 @@ public class Usuarios implements UserDetails {
 
     @OneToMany(mappedBy = "usuarios")
     private List<Orden> ordenes;
+    private boolean isEnabled;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -69,6 +70,7 @@ public class Usuarios implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.isEnabled;
+
     }
 }

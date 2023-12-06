@@ -60,6 +60,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/api/v1/signup", "/api/v1/signin").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/test/**").permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/**").permitAll()
                         .anyRequest().authenticated()
                 )
 
