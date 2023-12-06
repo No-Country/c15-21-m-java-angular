@@ -66,10 +66,10 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(authorize -> authorize
 
-                        .requestMatchers(HttpMethod.GET).hasAnyRole("ADMIN","USER")
-                        .requestMatchers(HttpMethod.POST).hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT).hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET).permitAll()
+                        .requestMatchers(HttpMethod.POST).permitAll()
+                        .requestMatchers(HttpMethod.PUT).permitAll()
+                        .requestMatchers(HttpMethod.DELETE).permitAll()
 
                         .anyRequest().authenticated()
                 )
