@@ -1,11 +1,10 @@
 package c1521mjavaangular.ecotienda.controllers;
 
 import c1521mjavaangular.ecotienda.exceptions.CategoriaNotFoundException;
-import c1521mjavaangular.ecotienda.models.CategoriaDto;
+import c1521mjavaangular.ecotienda.dto.CategoriaDto;
 import c1521mjavaangular.ecotienda.models.Categorias;
 import c1521mjavaangular.ecotienda.services.CategoriaService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,7 @@
 package c1521mjavaangular.ecotienda.services;
 
 import c1521mjavaangular.ecotienda.exceptions.CategoriaNotFoundException;
-import c1521mjavaangular.ecotienda.exceptions.DuplicateCategoryException;
-import c1521mjavaangular.ecotienda.models.CategoriaDto;
+import c1521mjavaangular.ecotienda.dto.CategoriaDto;
 import c1521mjavaangular.ecotienda.models.Categorias;
 import c1521mjavaangular.ecotienda.repositories.CategoriaRepository;
 import org.apache.logging.log4j.LogManager;
