@@ -1,66 +1,104 @@
 <div
-  class="relative min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-500 bg-no-repeat bg-cover"
-  style="
-    background-image: url(https://images.unsplash.com/photo-1605615971281-498d939477b3?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-  "
+  class="container mx-auto flex p-5 md:flex-row flex-col items-center relative"
 >
-  <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
-  <div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10">
-    <div class="text-center">
-      <h2 class="mt-6 text-3xl font-bold text-gray-900">Inicia sesión</h2>
-    </div>
-    <form class="mt-8 space-y-6" action="#">
-      <div class="relative">
-        <label class="text-sm font-bold text-gray-700 tracking-wide"
-          >Nombre y apellido</label
+  <div class="lg:flex-grow flex items-center justify-center">
+    <form class="flex flex-col text-center">
+      <h2 class="text-4xl font-bold text-et-turmeric">Registrarse</h2>
+
+      <div class="flex m-3 rounded border-gray-300 border border-solid">
+        <div
+          class="rounded border-gray-300 border border-solid h-full w-10 flex items-center justify-center p-4"
         >
+          <i class="fa fa-user"></i>
+        </div>
         <input
-          class="w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-          type=""
-          placeholder="mi nombre"
-          value="mi nombre"
+          class="w-full p-3"
+          type="text"
+          name="name"
+          id=""
+          placeholder="Nombre y apellido"
         />
       </div>
-      <div class="relative">
-        <label class="text-sm font-bold text-gray-700 tracking-wide"
-          >Email</label
+      <div class="flex m-3 rounded border-gray-300 border border-solid">
+        <div
+          class="rounded border-gray-300 border border-solid h-full w-10 flex items-center justify-center p-4"
         >
+          <i class="fa fa-user"></i>
+        </div>
         <input
-          class="w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-          type=""
-          placeholder="mail@gmail.com"
-          value="mail@gmail.com"
+          class="w-full p-3"
+          type="text"
+          name="user"
+          id=""
+          placeholder="Correo electrónico"
         />
       </div>
-      <div class="mt-8 content-center">
-        <label class="text-sm font-bold text-gray-700 tracking-wide">
-          Password
-        </label>
-        <input
-          class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-          type=""
-          placeholder="Enter your password"
-          value="*****|"
-        />
-      </div>
-      <div>
-        <button
-          type="submit"
-          class="w-full flex justify-center bg-indigo-500 text-gray-100 p-4 rounded-full tracking-wide font-semibold focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg cursor-pointer transition ease-in duration-300"
-        >
-          Registrarme
-        </button>
-      </div>
-      <p
-        class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500"
+      <div
+        class="flex m-3 rounded border-gray-300 border border-solid items-center"
       >
-        <span>¿Ya tienes cuenta?</span>
-        <a
-          routerLink="/auth/login"
-          class="text-indigo-500 hover:text-indigo-500no-underline hover:underline cursor-pointer transition ease-in duration-300"
-          >Inicia sesión</a
+        <div
+          class="rounded border-gray-300 border border-solid h-full w-10 flex items-center justify-center p-4"
         >
-      </p>
+          <i class="fa-solid fa-key"></i>
+        </div>
+        <input
+          class="w-full p-3"
+          type="password"
+          name="email"
+          id=""
+          placeholder="Constraseña"
+        />
+        <a href="" class="p-3"><i class="fa fa-eye"></i></a>
+      </div>
+      <div
+        class="flex m-3 rounded border-gray-300 border border-solid items-center"
+      >
+        <div
+          class="rounded border-gray-300 border border-solid h-full w-10 flex items-center justify-center p-4"
+        >
+          <i class="fa-solid fa-key"></i>
+        </div>
+        <input
+          class="w-full p-3"
+          type="password"
+          name="email"
+          id=""
+          placeholder="Repetir Constraseña"
+        />
+        <a href="" class="p-3"><i class="fa fa-eye"></i></a>
+      </div>
+      <div class="flex p-3 justify-center items-center">
+        <input
+          type="checkbox"
+          name="terminos"
+          id=""
+          class="w-5 h-5 border border-gray-400 rounded m-3"
+        />
+        <p>
+          Acepto los
+          <a href="#" class="text-et-turmeric font-bold">
+            Terminos y condiciones</a
+          >
+        </p>
+      </div>
+      <div class="flex justify-center">
+        <button class="et-p-btn">Registrarme</button>
+      </div>
+      <div class="flex p-3 justify-center">
+        <p>
+          ¿Ya tienes una cuenta?
+          <a routerLink="/auth/login" class="text-et-turmeric font-bold"
+            >Inicia sesión</a
+          >
+        </p>
+      </div>
     </form>
+  </div>
+  <div class="hidden md:block lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+    <img
+      src="../../../../assets/signin1.png"
+      alt=""
+      class="object-cover object-center rounded"
+    />
   </div>
 </div>
