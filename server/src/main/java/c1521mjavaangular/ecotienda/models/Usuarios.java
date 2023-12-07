@@ -21,7 +21,7 @@ public class Usuarios implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
     @Column(name = "email")
     private String email;
     @Column(name = "nombre")
@@ -39,8 +39,6 @@ public class Usuarios implements UserDetails {
     @Enumerated(EnumType.STRING)
     Role role;
 
-    @OneToMany(mappedBy = "usuarios")
-    private List<Orden> ordenes;
     private boolean isEnabled;
 
     @Override

@@ -15,7 +15,7 @@ public class Orden {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @ManyToOne
+    @ManyToOne(targetEntity = Usuarios.class)
     @JoinColumn(name = "usuario_id")
     private Usuarios usuarios;
     @OneToOne
