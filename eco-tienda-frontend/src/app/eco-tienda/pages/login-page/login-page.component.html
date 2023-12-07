@@ -1,0 +1,49 @@
+<section class="p-5">
+    <div class="flex justify-between w-full">
+
+        <form class="flex flex-col text-center p-5 space-y-5">
+
+            <h1 class="text-4xl font-bold text-et-turmeric">Iniciar sesión</h1>
+            <div class="flex m-3 rounded border-gray-300 border border-solid">
+                <div class=" rounded border-gray-300 border border-solid  h-full w-10 flex items-center justify-center p-3">
+                    <i class="fa fa-user"></i></div>
+                <input formControlName="email" class="w-full p-3" type="text" name="user" id="" placeholder="Usuario o correo">
+            </div>
+            <div class="flex m-3 rounded border-gray-300 border border-solid items-center">
+                <div class=" rounded border-gray-300 border border-solid  h-full w-10 flex items-center justify-center p-3">
+                    <i class="fa-solid fa-key"></i></div>
+                <input formControlName="password" class="w-full p-3" type="password" name="email" id="" placeholder="Constraseña">
+                <a href="" class="p-3"><i class="fa fa-eye"></i></a>
+            </div>
+
+            <div class="flex p-3 justify-between items-center">
+                <div class="flex items-center">
+
+                    <input type="checkbox" name="recuerdame" id="" class="w-5 h-5 border border-gray-400 rounded m-3">
+                    <a href="#" class="text-et-turmeric font-bold">Recuerdame</a>
+                </div>
+                <button
+                    class="btn btn--primary bg-et-turmeric px-5 py-3 rounded shadow-lg border-gray-400  border border-solid">Iniciar
+                    sesión</button>
+            </div>
+            <div class="flex p-3 justify-between text-et-turmeric font-bold">
+                <a href="#">¿Olvidó su contraseña?</a>
+                <a routerLink="/signup">Registrate ahora</a>
+            </div>
+            <p class="text-et-turmeric font-bold">_________________ o _________________</p>
+            <button class="flex btn btn--primary bg-blue-600 my-2 mx-3  rounded text-white">
+                <div class="bg-blue-800 rounded h-full w-10 flex items-center justify-center">
+                    <i class="fa fa-facebook"></i>
+                </div><span class="m-3">Iniciar sesión con Facebook</span>
+            </button>
+            <button class="flex btn btn--primary bg-red-600 my-2 mx-3  rounded text-white">
+                <div class="bg-red-800 rounded  h-full w-10 flex items-center justify-center">
+                    <i class="fa fa-google"></i>
+                </div><span class="m-3">Iniciar sesión con Google</span>
+            </button>
+        </form>
+        <div>
+            <img src="../../../../assets/signin1.png" alt="imagen">
+        </div>
+    </div>
+</section>
