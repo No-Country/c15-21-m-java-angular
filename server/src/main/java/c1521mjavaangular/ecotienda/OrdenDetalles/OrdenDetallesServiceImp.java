@@ -4,7 +4,7 @@ package c1521mjavaangular.ecotienda.OrdenDetalles;
 import java.util.List;
 import java.util.Optional;
 
-public class OrdenDetallesImp implements IOrdenDetalles{
+public class OrdenDetallesServiceImp implements IOrdenDetalles{
     @Override
     public void crearOrdenDetalles(OrdenDetalles ordenDetalles) {
 

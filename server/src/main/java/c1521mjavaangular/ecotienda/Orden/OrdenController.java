@@ -1,7 +1,5 @@
 package c1521mjavaangular.ecotienda.Orden;
 
-import c1521mjavaangular.ecotienda.Orden.OrdenDto;
-import c1521mjavaangular.ecotienda.Orden.IOrdenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +13,7 @@ import java.util.Optional;
 public class OrdenController {
 
     @Autowired
-    private OrdenService ordenService;
+    private OrdenServiceImp ordenService;
 
     @GetMapping("")
     public List<OrdenDto> obtenerOrdenes(){

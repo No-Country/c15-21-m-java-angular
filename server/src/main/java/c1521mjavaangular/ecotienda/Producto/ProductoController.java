@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class ProductoController {
         @Autowired
-        ProductoService productoService;
+        private ProductoService productoService;
         @Autowired
         private UploadFilesService upload;
 
