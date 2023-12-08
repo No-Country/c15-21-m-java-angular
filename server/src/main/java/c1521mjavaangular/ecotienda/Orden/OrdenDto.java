@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OrdenDto {
 
-    public Integer id;
+    public Long id;
     public UsuariosDto usuariosDto;
     public OrdenDetalles ordenDetalles;
 }

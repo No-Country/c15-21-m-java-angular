@@ -15,7 +15,7 @@ import java.util.Optional;
 public class OrdenController {
 
     @Autowired
-    private IOrdenService ordenService;
+    private OrdenService ordenService;
 
     @GetMapping("")
     public List<OrdenDto> obtenerOrdenes(){
