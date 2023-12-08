@@ -25,7 +25,7 @@ public class OrdenController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> obtenerOrdenPorId(@PathVariable Integer id){
+    public ResponseEntity<?> obtenerOrdenPorId(@PathVariable Long id){
         try {
             Optional<OrdenDto> orden = ordenService.buscarOrden(id);
             if (orden.isPresent()){
@@ -44,6 +44,7 @@ public class OrdenController {
             ordenService.crearOrden(ordenDto);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (RuntimeException e) {
+            System.out.println("entrando al catch");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creando orden");
@@ -51,7 +52,7 @@ public class OrdenController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> modificarOrden(@PathVariable Integer id, @RequestBody OrdenDto ordenDto) {
+    public ResponseEntity<?> modificarOrden(@PathVariable Long id, @RequestBody OrdenDto ordenDto) {
         try {
             ordenDto.setId(id);
             ordenService.modificarOrden(ordenDto);
@@ -62,7 +63,7 @@ public class OrdenController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarOrden(@PathVariable Integer id){
+    public ResponseEntity<?> eliminarOrden(@PathVariable Long id){
         try {
             ordenService.eliminarOrden(id);
             return ResponseEntity.ok("Orden con id: " + id + " eliminada correctamente");

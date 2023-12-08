@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface ProductoRepository extends JpaRepository<Productos, Integer>{
 
     @EntityGraph(attributePaths = "categorias")
-    Optional<Productos> findById(Integer id);
+    Optional<Productos> findById(Long id);
 }

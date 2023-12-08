@@ -14,13 +14,15 @@ public class Orden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
     @ManyToOne(targetEntity = Usuarios.class)
     @JoinColumn(name = "usuario_id")
     private Usuarios usuarios;
     @OneToOne
     @JoinColumn(name = "ordenDetalles_id")
     private OrdenDetalles detalles;
+    @Column(name = "precioTotal")
+    private double precioTotal;
 
 
 }

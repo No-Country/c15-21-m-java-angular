@@ -14,15 +14,13 @@ public class OrdenDetalles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
-    @Column(name = "precio")
-    private Double precio;
+    private Long id;
     @Column(name = "cantidad")
     private Integer cantidad;
     @Column(name = "direccion")
     private String direccion;
-
-
+    @Column(name = "precioProducto")
+    private double precioProducto;
     @ManyToOne
     private Productos productos;
 

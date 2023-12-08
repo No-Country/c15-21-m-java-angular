@@ -9,11 +9,11 @@ public interface IOrdenService {
 
     void crearOrden(OrdenDto ordenDto);
 
-    Optional<OrdenDto> buscarOrden(Integer id);
+    Optional<OrdenDto> buscarOrden(Long id);
 
     void modificarOrden(OrdenDto orden);
 
-    void eliminarOrden(Integer id);
+    void eliminarOrden(Long id);
 
     List<OrdenDto> obtenerOrdenes();
 }
