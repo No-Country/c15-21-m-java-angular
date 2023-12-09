@@ -23,7 +23,7 @@ public class Productos {
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "precio")
-    private double precio;
+    private Double precio;
     @Column(name = "stock")
     private Integer stock;
     @ManyToMany
