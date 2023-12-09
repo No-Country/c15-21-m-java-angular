@@ -45,7 +45,7 @@ public class ProductoController {
         @Operation(summary = "Busca un producto por id")
         @GetMapping("/productos/{id}")
             public ResponseEntity<Productos> obtenerProductoPorId(
-                    @PathVariable int id){
+                    @PathVariable Long id){
             Productos productos = this.productoService.buscarProducto(id);
             if(productos != null)
                 return ResponseEntity.ok(productos);
@@ -55,7 +55,7 @@ public class ProductoController {
     @Operation(summary = "Actualiza un producto por su id")
     @PutMapping("/productos/{id}")
     public ResponseEntity<Productos> actualizarProducto(
-            @PathVariable int id,
+            @PathVariable Long id,
             @RequestBody Productos productoRecibido,
             @RequestParam(value = "img", required = false) MultipartFile file) throws IOException {
             Productos productos = this.productoService.buscarProducto(id);
@@ -84,7 +84,7 @@ public class ProductoController {
 
         @Operation(summary = "elimina un producto por su id")
         @DeleteMapping("productos/{id}")
-        public ResponseEntity<Map<String, Boolean>> eliminarProducto(@PathVariable int id){
+        public ResponseEntity<Map<String, Boolean>> eliminarProducto(@PathVariable Long id){
             Productos productos = this.productoService.buscarProducto(id);
             if(productos == null)
                 throw new RecursoNoEncontradoException("No se encontro el id: " + id);

@@ -5,10 +5,10 @@ import java.util.List;
 public interface ProductoService {
     public List<Productos> listarProductos();
 
-    public Productos buscarProducto(Integer id);
+    public Productos buscarProducto(Long id);
 
     public Productos guardarProducto(Productos productos);
 
-    public void eliminarProducto(Integer id);
+    public void eliminarProducto(Long id);
 
 }

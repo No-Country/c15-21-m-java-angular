@@ -20,9 +20,6 @@ public class Orden {
     @ManyToOne(targetEntity = Usuarios.class)
     @JoinColumn(name = "usuario_id")
     private Usuarios usuarios;
-    @OneToOne
-    @JoinColumn(name = "ordenDetalles_id")
-    private OrdenDetalles detalles;
     @Column(name = "precioTotal")
     private double precioTotal;
 

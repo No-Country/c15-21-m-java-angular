@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ProductoRepository extends JpaRepository<Productos, Integer>{
+public interface ProductoRepository extends JpaRepository<Productos, Long> {
 
     @EntityGraph(attributePaths = "categorias")
     Optional<Productos> findById(Long id);
+
 }

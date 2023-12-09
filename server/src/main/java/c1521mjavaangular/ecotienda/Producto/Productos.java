@@ -19,11 +19,11 @@ public class Productos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "precio")
-    private Integer precio;
+    private double precio;
     @Column(name = "stock")
     private Integer stock;
     @ManyToMany

@@ -1,5 +1,6 @@
 package c1521mjavaangular.ecotienda.OrdenDetalles;
 
+import c1521mjavaangular.ecotienda.Orden.Orden;
 import c1521mjavaangular.ecotienda.Producto.Productos;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,9 @@ public class OrdenDetalles {
     private String direccion;
     @Column(name = "precioProducto")
     private double precioProducto;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "orden_id")
+    private Orden orden;
     @ManyToOne
     private Productos productos;
 

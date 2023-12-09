@@ -1,5 +1,6 @@
 package c1521mjavaangular.ecotienda.Orden;
 
+import c1521mjavaangular.ecotienda.Categoria.Categorias;
 import c1521mjavaangular.ecotienda.OrdenDetalles.OrdenDetalles;
 import c1521mjavaangular.ecotienda.OrdenDetalles.OrdenDetallesRepository;
 import c1521mjavaangular.ecotienda.Producto.ProductoDto;
@@ -30,30 +31,33 @@ public class OrdenServiceImp implements IOrdenService{
 
     @Override
     public void crearOrden(OrdenDto ordenDto){
-        Optional<Usuarios> usuarioExistenteOptional = usuarioRepository.findById(ordenDto.getId());
-        Optional<Productos> productosExistenteOptional = productoRepository.findById(ordenDto.getId());
-        if (usuarioExistenteOptional.isPresent() && productosExistenteOptional.isPresent()){
-            Usuarios usuarioExistente = usuarioExistenteOptional.get();
-            Productos productosExistente = productosExistenteOptional.get();
-            Orden orden = new Orden();
-            orden.setDetalles(ordenDto.getOrdenDetalles());
-            orden.setUsuarios(usuarioExistente);
-            List<OrdenDetalles> ordenDetallesList = getOrdenDetalles(ordenDto, productosExistente);
-            ordenRepository.save(orden);
-            ordenDetallesRepository.saveAll(ordenDetallesList);
-        }
+        Optional<Usuarios> usuarioExistenteOptional = usuarioRepository.findById(ordenDto.getUsuariosDto().getId());
+        Orden orden = new Orden();
+
+            if (usuarioExistenteOptional.isPresent()){
+                Usuarios usuarioExistente = usuarioExistenteOptional.get();
+                orden.setUsuarios(usuarioExistente);
+                orden.setPrecioTotal(500.0);
+
+                ordenRepository.save(orden);
+                List<OrdenDetalles> ordenDetallesList = getOrdenDetallesList(ordenDto, orden);
+                ordenDetallesRepository.saveAll(ordenDetallesList);
+            }
+
     }
 
-    private List<OrdenDetalles> getOrdenDetalles(OrdenDto ordenDto, Productos productosExistente) {
+    private List<OrdenDetalles> getOrdenDetallesList(OrdenDto ordenDto, Orden orden) {
         int total = 0;
         List<OrdenDetalles> ordenDetallesList = new ArrayList<>();
-        for (ProductoDto productoDto: ordenDto.getListaProducto()){
-            total += productosExistente.getPrecio() * productoDto.getCantidad();
+        for (ProductoDto productosEnOrden: ordenDto.getListaProducto()){
+            Productos productos = productoRepository.findById(productosEnOrden.getId()).get();
+            total += productos.getPrecio() * productosEnOrden.getCantidad();
             OrdenDetalles ordenDetalles = new OrdenDetalles();
             ordenDetalles.setDireccion("mi casa");
-            ordenDetalles.setCantidad(productoDto.getCantidad());
-            ordenDetalles.setPrecioProducto(productosExistente.getPrecio());
-            ordenDetalles.setProductos(productosExistente);
+            ordenDetalles.setCantidad(productosEnOrden.getCantidad());
+            ordenDetalles.setPrecioProducto(productos.getPrecio());
+            ordenDetalles.setProductos(productos);
+            ordenDetalles.setOrden(orden);
             ordenDetallesList.add(ordenDetalles);
         }
         return ordenDetallesList;
@@ -71,12 +75,14 @@ public class OrdenServiceImp implements IOrdenService{
     public void modificarOrden(OrdenDto ordenDto) {
         Optional<Orden> ordenExistenteOptional = ordenRepository.findById(ordenDto.getId());
         Optional<Usuarios> usuarioExistenteOptional = usuarioRepository.findById(ordenDto.usuariosDto.getId());
+        List<ProductoDto> productoDtoList = ordenDto.getListaProducto();
         if (ordenExistenteOptional.isPresent() && usuarioExistenteOptional.isPresent() ){
             Orden ordenExistente = ordenExistenteOptional.get();
             Usuarios usuarioExistente = usuarioExistenteOptional.get();
             ordenExistente.setUsuarios(usuarioExistente);
-            ordenExistente.setDetalles(ordenDto.getOrdenDetalles());
+
             ordenRepository.save(ordenExistente);
+
         }
 
     }
@@ -99,12 +105,22 @@ public class OrdenServiceImp implements IOrdenService{
     public OrdenDto convertEntityToDtoList(Orden orden) {
         OrdenDto ordenDto = new OrdenDto();
         UsuariosDto usuarioDto = new UsuariosDto();
+        List<OrdenDetalles> ordenDetallesList = ordenDetallesRepository.findAllByOrdenId(orden.getId());
+        List<ProductoDto> productosList = new ArrayList<>();
         usuarioDto.setId(orden.getUsuarios().getId());
         usuarioDto.setDireccion(orden.getUsuarios().getDireccion());
         usuarioDto.setNombre(orden.getUsuarios().getNombre());
         usuarioDto.setEmail(orden.getUsuarios().getEmail());
         ordenDto.setId(orden.getId());
         ordenDto.setUsuariosDto(usuarioDto);
+        for (OrdenDetalles ordenDetalles: ordenDetallesList){
+            ProductoDto productoDto = new ProductoDto();
+            productoDto.setId(ordenDetalles.getProductos().getId());
+            productoDto.setCantidad(ordenDetalles.getCantidad());
+            productoDto.setPrecio(ordenDetalles.getPrecioProducto());
+            productosList.add(productoDto);
+        }
+        ordenDto.setListaProducto(productosList);
 
         return ordenDto;
     }
