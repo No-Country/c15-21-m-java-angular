@@ -1,5 +1,6 @@
 package c1521mjavaangular.ecotienda.Orden;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +16,13 @@ public class OrdenController {
     @Autowired
     private OrdenServiceImp ordenService;
 
+    @Operation(summary = "Lista las ordenes de la base de datos")
     @GetMapping("")
     public List<OrdenDto> obtenerOrdenes(){
         return ordenService.obtenerOrdenes();
     }
 
+    @Operation(summary = "busca un producto por id")
     @GetMapping("/{id}")
     public ResponseEntity<?> obtenerOrdenPorId(@PathVariable Long id){
         try {
@@ -34,6 +37,7 @@ public class OrdenController {
         }
     }
 
+    @Operation(summary = "agrega una orden a la base de datos")
     @PostMapping("")
     public ResponseEntity<?> guardarOrden(@RequestBody OrdenDto ordenDto){
         try {
@@ -47,6 +51,7 @@ public class OrdenController {
         }
     }
 
+    @Operation(summary = "modifica una orden en la base de datos")
     @PutMapping("/{id}")
     public ResponseEntity<?> modificarOrden(@PathVariable Long id, @RequestBody OrdenDto ordenDto) {
         try {
@@ -58,6 +63,7 @@ public class OrdenController {
         }
     }
 
+    @Operation(summary = "elimina una orden")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminarOrden(@PathVariable Long id){
         try {
