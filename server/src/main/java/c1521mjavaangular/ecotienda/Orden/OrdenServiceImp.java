@@ -114,10 +114,16 @@ public class OrdenServiceImp implements IOrdenService{
         ordenDto.setId(orden.getId());
         ordenDto.setUsuariosDto(usuarioDto);
         for (OrdenDetalles ordenDetalles: ordenDetallesList){
+            Productos productos = productoRepository.findById(ordenDetalles.getProductos().getId()).get();
             ProductoDto productoDto = new ProductoDto();
             productoDto.setId(ordenDetalles.getProductos().getId());
             productoDto.setCantidad(ordenDetalles.getCantidad());
-            productoDto.setPrecio(ordenDetalles.getPrecioProducto());
+            productoDto.setPrecio(productos.getPrecio());
+            productoDto.setNombre(productos.getNombre());
+            productoDto.setCodigo(productos.getCodigo());
+            productoDto.setImagen(productos.getImagen());
+            productoDto.setCategorias(productos.getCategorias());
+            productoDto.setStock(productos.getStock());
             productosList.add(productoDto);
         }
         ordenDto.setListaProducto(productosList);
