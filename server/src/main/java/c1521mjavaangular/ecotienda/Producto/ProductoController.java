@@ -23,25 +23,18 @@ public class ProductoController {
         private UploadFilesService upload;
 
 
-        //http://url/api/administrador/productos
+        //http://url/administrador/productos
         @Operation(summary = "Lista los productos en la base de datos")
         @GetMapping("/productos")
             public List<Productos> obtenerProductos() {
             return productoService.listarProductos();
     }
 
-        @Operation(summary = "agrega productos a la base de datos")
-        @PostMapping("/productos")
-            public Productos agregarProducto(@RequestBody Productos productos, @RequestParam("img") MultipartFile file) throws IOException {
-            //Imagen
-            if (productos.getId() == null) {
-                String nombreImagen = upload.guardarImagen(file);
-                productos.setImagen(nombreImagen);
-            } else {
-            }
-            return this.productoService.guardarProducto(productos);
-            }
-
+         @Operation(summary = "agrega productos a la base de datos")
+         @PostMapping("/productos")
+        public Productos agregarProducto(@RequestBody Productos productos){
+        return productoService.guardarProducto(productos);
+        }
         @Operation(summary = "Busca un producto por id")
         @GetMapping("/productos/{id}")
             public ResponseEntity<Productos> obtenerProductoPorId(
@@ -52,51 +45,42 @@ public class ProductoController {
             else
                 throw new RecursoNoEncontradoException("No se Encontro el id : " + id);
         }
-    @Operation(summary = "Actualiza un producto por su id")
-    @PutMapping("/productos/{id}")
-    public ResponseEntity<Productos> actualizarProducto(
+        @Operation(summary = "Actualiza un producto por su id")
+        @PutMapping("/productos/{id}")
+        public ResponseEntity<Productos> actualizarProducto(
             @PathVariable Long id,
-            @RequestBody Productos productoRecibido,
-            @RequestParam(value = "img", required = false) MultipartFile file) throws IOException {
+            @RequestBody Productos productoRecibido) {
             Productos productos = this.productoService.buscarProducto(id);
-             if (productos == null)
-                throw new RecursoNoEncontradoException("No se encontró el id: " + id);
 
-            // Si se proporciona una imagen nueva
-             if (file.isEmpty()) {
-                Productos p = new Productos();
-                p = productoService.buscarProducto(productos.getId());
-            } else{
-                 String nombreImagen = upload.guardarImagen(file);
-                 productos.setImagen(nombreImagen);
-             }
+            if (productos == null)
+            throw new RecursoNoEncontradoException("No se encontró el id: " + id);
 
-              // Actualizar otros campos
-                productos.setCategorias(productoRecibido.getCategorias());
-                productos.setPrecio(productoRecibido.getPrecio());
-                productos.setCodigo(productoRecibido.getCodigo());
-                productos.setNombre(productoRecibido.getNombre());
-                productos.setStock(productoRecibido.getStock());
+            productos.setCategorias(productoRecibido.getCategorias());
+            productos.setPrecio(productoRecibido.getPrecio());
+            productos.setCodigo(productoRecibido.getCodigo());
+            productos.setNombre(productoRecibido.getNombre());
+            productos.setStock(productoRecibido.getStock());
+            productos.setImagen(productoRecibido.getImagen());
 
-                this.productoService.guardarProducto(productos);
-                return ResponseEntity.ok(productos);
-    }
+            this.productoService.guardarProducto(productos);
+            return ResponseEntity.ok(productos);
+         }
 
         @Operation(summary = "elimina un producto por su id")
         @DeleteMapping("productos/{id}")
-        public ResponseEntity<Map<String, Boolean>> eliminarProducto(@PathVariable Long id){
-            Productos productos = this.productoService.buscarProducto(id);
-            if(productos == null)
-                throw new RecursoNoEncontradoException("No se encontro el id: " + id);
-            // Borrar la imagen antes de eliminar el producto
-            if (productos.getImagen() != null && !productos.getImagen().isEmpty()) {
-                upload.borrarImagen(productos.getImagen());
-            }
-            this.productoService.eliminarProducto(productos.getId());
-            Map<String, Boolean> respuesta = new HashMap<>();
-            respuesta.put("eliminado", Boolean.TRUE);
-            return ResponseEntity.ok(respuesta);
+        public ResponseEntity<Map<String, Boolean>> eliminarProducto(@PathVariable Long id) {
+        Productos productos = this.productoService.buscarProducto(id);
+        if (productos == null) {
+            throw new RecursoNoEncontradoException("No se encontró el id: " + id);
         }
+
+        // Actualizar el producto para reflejar el cambio en la base de datos
+        this.productoService.guardarProducto(productos);
+
+        Map<String, Boolean> respuesta = new HashMap<>();
+        respuesta.put("eliminado", Boolean.TRUE);
+        return ResponseEntity.ok(respuesta);
+    }
 
 
 }
