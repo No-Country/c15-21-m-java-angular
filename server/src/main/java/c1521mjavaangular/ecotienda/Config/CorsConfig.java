@@ -17,7 +17,7 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOriginPatterns(List.of("http://localhost:4200"));
+        config.setAllowedOriginPatterns(List.of("http://*"));
 
         config.addAllowedMethod("OPTIONS");
         config.addAllowedMethod("GET");
