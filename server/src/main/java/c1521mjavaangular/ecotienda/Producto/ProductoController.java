@@ -60,6 +60,7 @@ public class ProductoController {
             productos.setCodigo(productoRecibido.getCodigo());
             productos.setNombre(productoRecibido.getNombre());
             productos.setStock(productoRecibido.getStock());
+            productos.setDescripcion(productoRecibido.getDescripcion());
             productos.setImagen(productoRecibido.getImagen());
 
             this.productoService.guardarProducto(productos);
