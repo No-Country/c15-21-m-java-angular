@@ -19,5 +19,6 @@ public class ProductoDto {
     public String codigo;
     public String imagen;
     public Integer stock;
+    public String descripcion;
     public List<Categorias> categorias;
 }
