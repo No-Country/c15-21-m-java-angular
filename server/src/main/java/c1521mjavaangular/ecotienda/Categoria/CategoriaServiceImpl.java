@@ -29,6 +29,7 @@ public class CategoriaServiceImpl implements CategoriaService {
         Categorias categoria = Categorias.builder()
                 .nombre(categoriaDto.getNombre())
                 .descripcion(categoriaDto.getDescripcion())
+                .imagen(categoriaDto.getImagen())
                 .build();
 
         categoriaRepository.save(categoria);
