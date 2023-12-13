@@ -60,6 +60,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 
                 existingCategoria.setNombre(categoria.getNombre());
                 existingCategoria.setDescripcion(categoria.getDescripcion());
+                existingCategoria.setImagen(categoria.getImagen());
 
 
                 categoriaRepository.save(existingCategoria);
