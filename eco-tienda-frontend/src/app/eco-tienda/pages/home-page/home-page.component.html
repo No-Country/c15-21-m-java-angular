@@ -2,46 +2,24 @@
   <div class="relative pb-2 md:pb-9">
     <div class="grid grid-cols-3 md:grid-cols-5 justify-items-center mt-3">
       <div class="">
-        <img
-          src="../../../../assets/r_1.png"
-          alt=""
-          class="h-24 scale-75 md:scale-100 object-cover"
-        />
+        <img src="../../../../assets/r_1.png" alt="" class="h-24 scale-75 md:scale-100 object-cover" />
       </div>
       <div class="">
-        <img
-          src="../../../../assets/r_2.png"
-          alt=""
-          class="h-24 scale-75 md:scale-100 object-cover"
-        />
+        <img src="../../../../assets/r_2.png" alt="" class="h-24 scale-75 md:scale-100 object-cover" />
       </div>
       <div class="">
-        <img
-          src="../../../../assets/r_3.png"
-          alt=""
-          class="h-24 scale-75 md:scale-100 object-cover"
-        />
+        <img src="../../../../assets/r_3.png" alt="" class="h-24 scale-75 md:scale-100 object-cover" />
       </div>
       <div class="">
-        <img
-          src="../../../../assets/r_4.png"
-          alt=""
-          class="h-24 scale-75 md:scale-100 object-cover"
-        />
+        <img src="../../../../assets/r_4.png" alt="" class="h-24 scale-75 md:scale-100 object-cover" />
       </div>
       <div class="col-start-3 md:col-start-5">
-        <img
-          src="../../../../assets/r_5.png"
-          alt=""
-          class="h-24 scale-75 md:scale-100 object-cover"
-        />
+        <img src="../../../../assets/r_5.png" alt="" class="h-24 scale-75 md:scale-100 object-cover" />
       </div>
     </div>
     <div class="container flex flex-col items-center mx-auto my-3">
       <div class="flex flex-col px-6 py-2 text-center w-10/12 mx-auto">
-        <h2
-          class="text-3xl font-medium leading-tight lg:text-4xl text-gray-800"
-        >
+        <h2 class="text-3xl font-medium leading-tight lg:text-4xl text-gray-800">
           Bienvenidos a EcoTienda
         </h2>
         <p class="text-base font-medium leading-7 text-et-mule-fawn">
@@ -55,18 +33,14 @@
       </div>
     </div>
     <div class="absolute bottom-0 left-0 invisible md:visible">
-      <img
-        src="../../../../assets/fondo.png"
-        alt=""
-        class="h-24 scale-50 md:scale-75 object-cover"
-      />
+      <img src="../../../../assets/fondo.png" alt="" class="h-24 scale-50 md:scale-75 object-cover" />
     </div>
     <div
-      class="h-px w-96 bg-gradient-to-r from-et-turmeric to-et-primrose absolute bottom-3 left-40 invisible md:visible"
-    ></div>
+      class="h-px w-96 bg-gradient-to-r from-et-turmeric to-et-primrose absolute bottom-3 left-40 invisible md:visible">
+    </div>
   </div>
   <!-- Category -->
-  <div class="flex flex-wrap mt-3">
+  <!-- <div class="flex flex-wrap mt-3">
     <div class="lg:w-1/3 w-full lg:pl-3 pb-3" *ngFor="let item of listProducts">
       <div class="card p-0 relative text-et-citrine-white">
         <div class="card-overlay"></div>
@@ -75,6 +49,22 @@
           <div class="p-6 absolute inset-0 z-20">
             <div class="h-full flex justify-center items-center">
               <h2 class="card-title">{{ item.title }}</h2>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div> -->
+  <!-- Category -->
+  <div class="flex flex-wrap mt-3">
+    <div class="lg:w-1/3 w-full lg:pl-3 pb-3" *ngFor="let item of categoriesList">
+      <div class="card p-0 relative text-et-citrine-white">
+        <div class="card-overlay"></div>
+        <img src="../../../../assets/et_jabones.png" alt="" class="card-img h-full" />
+        <a routerLink="/eco-tienda/list">
+          <div class="p-6 absolute inset-0 z-20">
+            <div class="h-full flex justify-center items-center">
+              <h2 class="card-title">{{ item.nombre }}</h2>
             </div>
           </div>
         </a>
@@ -90,17 +80,10 @@
   </div>
   <!-- Products Cards  -->
   <div class="flex flex-wrap">
-    <div
-      *ngFor="let product of productList"
-      class="lg:w-1/3 w-full lg:pl-3 pb-3"
-    >
+    <div *ngFor="let product of productList" class="lg:w-1/3 w-full lg:pl-3 pb-3">
       <div class="bg-white shadow-md rounded-lg border">
         <a class="block relative h-48 rounded overflow-hidden">
-          <img
-            alt="ecommerce"
-            class="object-cover object-center w-full h-full block"
-            [src]="product.imagen"
-          />
+          <img alt="ecommerce" class="object-cover object-center w-full h-full block" [src]="product.imagen" />
         </a>
         <div class="mt-4 ml-3">
           <a routerLink="/eco-tienda/detail">
@@ -109,79 +92,48 @@
             </h3>
           </a>
           <div class="flex items-center mt-2.5 mb-3">
-            <svg
-              class="w-5 h-5 text-yellow-300"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
               <path
-                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-              ></path>
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
             </svg>
-            <svg
-              class="w-5 h-5 text-yellow-300"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
               <path
-                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-              ></path>
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
             </svg>
-            <svg
-              class="w-5 h-5 text-yellow-300"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
               <path
-                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-              ></path>
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
             </svg>
-            <svg
-              class="w-5 h-5 text-yellow-300"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
               <path
-                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-              ></path>
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
             </svg>
-            <svg
-              class="w-5 h-5 text-yellow-300"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
               <path
-                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-              ></path>
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
             </svg>
           </div>
           <div class="flex items-center justify-between">
             <span class="text-3xl font-bold text-gray-900">{{
               product.precio
-            }}</span>
+              }}</span>
 
-            <a
-              routerLink="/shopping-cart/cart"
-              class="p-2 text-gray-700 cursor-pointer hover:scale-125 transition bg-et-turmeric rounded-tl-lg rounded-br-lg"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-6 h-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                />
+            <a routerLink="/shopping-cart/cart"
+              class="p-2 text-gray-700 cursor-pointer hover:scale-125 transition bg-et-turmeric rounded-tl-lg rounded-br-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
               </svg>
             </a>
           </div>
@@ -200,14 +152,9 @@
       </div>
     </div>
     <div class="absolute bottom-0 left-0 invisible md:visible">
-      <img
-        src="../../../../assets/fondo2.png"
-        alt=""
-        class="h-24 scale-50 md:scale-75 object-cover"
-      />
+      <img src="../../../../assets/fondo2.png" alt="" class="h-24 scale-50 md:scale-75 object-cover" />
     </div>
-    <div
-      class="h-px w-96 bg-gradient-to-l from-et-primrose to-et-wafer absolute bottom-3 left-40 invisible md:visible"
-    ></div>
+    <div class="h-px w-96 bg-gradient-to-l from-et-primrose to-et-wafer absolute bottom-3 left-40 invisible md:visible">
+    </div>
   </div>
 </section>

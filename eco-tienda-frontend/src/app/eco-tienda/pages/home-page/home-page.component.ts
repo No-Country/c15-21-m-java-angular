@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { EcoTiendaService } from 'src/app/services/eco-tienda.service';
 import { ProductsResponse } from '../../../interfaces/products.interface';
+import { CategoriesResponse } from 'src/app/interfaces/categories.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -9,6 +10,7 @@ import { ProductsResponse } from '../../../interfaces/products.interface';
 })
 export class HomePageComponent implements OnInit {
   public productList: ProductsResponse[] = [];
+  public categoriesList: CategoriesResponse[] = [];
 
   private tiendaService = inject(EcoTiendaService);
 
@@ -29,6 +31,12 @@ export class HomePageComponent implements OnInit {
       next: (products) => {
         this.productList = products;
         console.log(products);
+      },
+    });
+    this.tiendaService.getCategories().subscribe({
+      next: (categories) => {
+        this.categoriesList = categories;
+        console.log(categories);
       },
     });
   }
