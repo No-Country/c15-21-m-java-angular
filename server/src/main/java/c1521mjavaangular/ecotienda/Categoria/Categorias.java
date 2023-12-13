@@ -27,6 +27,7 @@ public class Categorias {
     private String nombre;
     @Column(name = "descripcion")
     private String descripcion;
+    private String imagen;
 
     @ManyToMany(mappedBy = "categorias")
     @JsonIgnore
