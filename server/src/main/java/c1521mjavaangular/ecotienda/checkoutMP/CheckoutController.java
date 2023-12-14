@@ -22,21 +22,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/checkout")
 public class CheckoutController {
-    @Autowired
-    private JwtService validateToken;
-
-    @Autowired
-    private UserDetails userDetails;
 
     @Value("${mercadopago.access_token}") // Lee el token desde la configuración de Spring Boot
     private String accessToken;
 
+
     @PostMapping("/create-preference")
-    public String createPreference(@RequestHeader(value="Authorization") String token, @RequestBody PreferenceItem preferenceItem) throws InvalidTokenException {
+    public String createPreference(@RequestBody PreferenceItem preferenceItem){
         MercadoPagoConfig.setAccessToken(accessToken);
-        Usuarios usuarios = new Usuarios();
-        usuarios.
-        if (!validateToken.isTokenValid(token, userDetails )) return "token incorrecto";
         try {
 
             List<PreferenceItemRequest> items = new ArrayList<>();
@@ -58,9 +51,8 @@ public class CheckoutController {
             PreferenceBackUrlsRequest backUrls =
 // ...
                     PreferenceBackUrlsRequest.builder()
-                            .success("https://ecommerce-utn.onrender.com/")
-                            .pending("https://ecommerce-utn.onrender.com/")
-                            .failure("https://www.seu-site/failure")
+                            .success("https://ecotienda.com")
+                            .pending("https://ecotienda.com")
                             .build();
             PreferenceRequest preferenceRequest = PreferenceRequest.builder()
                     .items(items).backUrls(backUrls).autoReturn("approved").build();
@@ -71,7 +63,7 @@ public class CheckoutController {
 
             PreferenceRequest request = PreferenceRequest.builder().backUrls(backUrls).build();
 
-            return preference.getId();
+            return preference.getInitPoint();
         } catch (MPException | MPApiException e) {
             // Manejo de excepciones
             e.printStackTrace();
