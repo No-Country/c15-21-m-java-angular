@@ -27,7 +27,7 @@ public class EmailService {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
-        String imagePath = "src/main/resources/static/LogoEcoTienda.png";
+        String imagePath = "target/classes/static/LogoEcoTienda.png";
         Path path = Paths.get(imagePath);
         byte[] imageBytes = Files.readAllBytes(path);
         String base64Image = Base64.getEncoder().encodeToString(imageBytes);
