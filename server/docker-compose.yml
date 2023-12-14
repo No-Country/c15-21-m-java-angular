@@ -12,6 +12,7 @@ services:
        MYSQL_URL: jdbc:mysql://java_db:3306/ecotienda
        MYSQL_USERNAME: root
        MYSQL_PASSWORD: admin
+       MP_ACCESS_TOKEN: APP_USR-3209786323129874-092615-e4bdbae746c1335ce5a7632e6bc4a52e-1490810411
     depends_on:
       - java_db
   java_db:
