@@ -23,7 +23,7 @@ public class Productos {
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "precio")
-    private double precio;
+    private Double precio;
     @Column(name = "stock")
     private Integer stock;
     @ManyToMany
@@ -33,6 +33,8 @@ public class Productos {
             inverseJoinColumns = @JoinColumn(name = "categoria_id")
     )
     private List<Categorias> categorias;
+    @Column(name="descripcion")
+    private String descripcion;
     @Column(name = "codigo")
     private String codigo;
     @Column(name = "imagen")
