@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -82,5 +84,13 @@ public class UsuariosServiceImpl implements UsuariosService {
 
         usuarios.setEnabled(false);
         usuariosRepository.save(usuarios);
+    }
+
+    @Override
+    public List<UsuariosResponse> findAll() {
+        List<Usuarios> usuariosList = usuariosRepository.findAll();
+        return usuariosList.stream()
+                .map(usuario -> mapper.map(usuario, UsuariosResponse.class))
+                .collect(Collectors.toList());
     }
 }
