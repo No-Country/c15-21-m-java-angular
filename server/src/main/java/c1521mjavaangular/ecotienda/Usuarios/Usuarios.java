@@ -36,6 +36,11 @@ public class Usuarios implements UserDetails {
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
 
+    @Column(name = "verification_token")
+    private String verificationToken;
+    @Column(name = "token_expiration_time")
+    private LocalDateTime tokenExpirationTime;
+
     @Enumerated(EnumType.STRING)
     Role role;
 

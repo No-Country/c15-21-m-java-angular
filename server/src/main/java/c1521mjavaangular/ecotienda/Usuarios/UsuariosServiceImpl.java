@@ -1,15 +1,19 @@
 package c1521mjavaangular.ecotienda.Usuarios;
 
+import c1521mjavaangular.ecotienda.Email.EmailService;
 import c1521mjavaangular.ecotienda.Exceptions.IdNotFoundException;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 @Service
@@ -21,6 +25,9 @@ public class UsuariosServiceImpl implements UsuariosService {
     private final UsuariosRepository usuariosRepository;
     private final ModelMapper mapper;
 
+    @Autowired
+    private EmailService emailService;
+
     public UserDetailsService userDetailsService() {
         return new UserDetailsService() {
             @Override
@@ -31,7 +38,7 @@ public class UsuariosServiceImpl implements UsuariosService {
         };
     }
 
-    public Usuarios save(Usuarios newUser){
+    public Usuarios save(Usuarios newUser) throws MessagingException, IOException {
         if (newUser.getId() == null) {
             newUser.setCreatedAt(LocalDateTime.now());
         }
