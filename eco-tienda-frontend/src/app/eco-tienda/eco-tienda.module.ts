@@ -7,6 +7,7 @@ import { ListPageComponent } from './pages/list-page/list-page.component';
 import { DetailPageComponent } from './pages/detail-page/detail-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SharedModule } from '../shared/shared.module';
+import { FeaturedPageComponent } from './pages/featured-page/featured-page.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
     ListPageComponent,
     DetailPageComponent,
     HomePageComponent,
+    FeaturedPageComponent,
   ],
   imports: [CommonModule, EcoTiendaRoutingModule, SharedModule],
 })
