@@ -1,0 +1,97 @@
+<div
+  class="container mx-auto flex p-5 md:flex-row flex-col items-center relative"
+>
+  <div class="lg:flex-grow flex items-center justify-center">
+    <form class="flex flex-col text-center">
+      <h2 class="text-4xl font-bold text-et-turmeric">Registrarse</h2>
+
+      <div class="flex m-3 rounded border-gray-300 border border-solid">
+        <div
+          class="rounded border-gray-300 border border-solid h-full w-10 flex items-center justify-center p-4"
+        >
+          <i class="fa fa-user"></i>
+        </div>
+        <input
+          class="w-full p-3"
+          type="text"
+          name="name"
+          placeholder="Nombre y apellido"
+        />
+      </div>
+      <div class="flex m-3 rounded border-gray-300 border border-solid">
+        <div
+          class="rounded border-gray-300 border border-solid h-full w-10 flex items-center justify-center p-4"
+        >
+          <i class="fa fa-user"></i>
+        </div>
+        <input
+          class="w-full p-3"
+          type="text"
+          name="user"
+          placeholder="Correo electrónico"
+        />
+      </div>
+      <div
+        class="flex m-3 rounded border-gray-300 border border-solid items-center"
+      >
+        <div
+          class="rounded border-gray-300 border border-solid h-full w-10 flex items-center justify-center p-4"
+        >
+          <i class="fa-solid fa-key"></i>
+        </div>
+        <input
+          class="w-full p-3"
+          type="password"
+          name="email"
+          placeholder="Constraseña"
+        />
+        <a class="p-3"><i class="fa fa-eye"></i></a>
+      </div>
+      <div
+        class="flex m-3 rounded border-gray-300 border border-solid items-center"
+      >
+        <div
+          class="rounded border-gray-300 border border-solid h-full w-10 flex items-center justify-center p-4"
+        >
+          <i class="fa-solid fa-key"></i>
+        </div>
+        <input
+          class="w-full p-3"
+          type="password"
+          name="email"
+          placeholder="Repetir Constraseña"
+        />
+        <a class="p-3"><i class="fa fa-eye"></i></a>
+      </div>
+      <div class="flex p-3 justify-center items-center">
+        <input
+          type="checkbox"
+          name="terminos"
+          class="w-5 h-5 border border-gray-400 rounded m-3"
+        />
+        <p>
+          Acepto los
+          <a class="text-et-turmeric font-bold"> Terminos y condiciones</a>
+        </p>
+      </div>
+      <div class="flex justify-center">
+        <button class="et-p-btn">Registrarme</button>
+      </div>
+      <div class="flex p-3 justify-center">
+        <p>
+          ¿Ya tienes una cuenta?
+          <a routerLink="/auth/login" class="text-et-turmeric font-bold"
+            >Inicia sesión</a
+          >
+        </p>
+      </div>
+    </form>
+  </div>
+  <div class="hidden md:block lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+    <img
+      src="../../../../assets/signin1.png"
+      alt=""
+      class="object-cover object-center rounded"
+    />
+  </div>
+</div>
