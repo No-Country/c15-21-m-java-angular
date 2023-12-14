@@ -48,7 +48,7 @@ public class AuthenticationService {
 
         user = usuariosServiceImpl.save(user);
 
-        String verificationLink = "http://vps-3800882-x.dattaweb.com:8080/v1/auth/verify?token=" + verificationToken;
+        String verificationLink = "http://vps-3785405-x.dattaweb.com:8080//v1/auth/verify?token=" + verificationToken;
         emailService.sendEcoTiendaConfirmationEmail(user.getEmail(), verificationLink, user.getNombre());
 
 
