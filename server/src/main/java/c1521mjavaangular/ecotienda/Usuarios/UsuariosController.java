@@ -57,6 +57,7 @@ public class UsuariosController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @Operation(summary = "Agrega a favoritos un producto del usuario logeado")
     @PostMapping("/agregarFavorito/{productId}")
     public ResponseEntity<?> addToFavorites(
             @PathVariable Long productId,
@@ -66,12 +67,13 @@ public class UsuariosController {
         return new ResponseEntity<>("Producto " + productId + " agregado a favoritos", HttpStatus.OK);
     }
 
+    @Operation(summary = "Trae los favoritos de un Usuario")
     @GetMapping("/{userId}/productosFavoritos")
     public ResponseEntity<List<Productos>> getFavoriteProducts(@PathVariable Long userId) {
         List<Productos> favoriteProducts = usuariosServiceImpl.getFavoriteProducts(userId);
         return new ResponseEntity<>(favoriteProducts, HttpStatus.OK);
     }
-
+    @Operation(summary = "Remueve de favoritos un producto del usuario logeado")
     @PostMapping("/removerFavorito/{productId}")
     public ResponseEntity<?> removeFavorite(
             @PathVariable Long productId,
