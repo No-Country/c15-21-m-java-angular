@@ -1,5 +1,6 @@
 package c1521mjavaangular.ecotienda.Jwt;
 
+import c1521mjavaangular.ecotienda.Usuarios.Usuarios;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -37,9 +38,16 @@ public class JwtService {
         return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
-    private <T> T extractClaim(String token, Function<Claims, T> claimsResolvers) {
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolvers) {
         final Claims claims = extractAllClaims(token);
         return claimsResolvers.apply(claims);
+    }
+
+    public String generateToken(Usuarios userDetails) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("usuariosId", userDetails.getUserId());
+
+        return generateToken(claims, userDetails);
     }
 
     private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
@@ -61,7 +69,11 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    private Claims extractAllClaims(String token) {
+    public Long extractUserIdFromToken(String token) {
+        return extractClaim(token, claims -> claims.get("usuariosId", Long.class));
+    }
+
+    public Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()
                 .setSigningKey(getSigningKey())

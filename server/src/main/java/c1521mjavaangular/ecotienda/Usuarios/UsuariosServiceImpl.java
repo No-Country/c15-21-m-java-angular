@@ -2,6 +2,8 @@ package c1521mjavaangular.ecotienda.Usuarios;
 
 import c1521mjavaangular.ecotienda.Email.EmailService;
 import c1521mjavaangular.ecotienda.Exceptions.IdNotFoundException;
+import c1521mjavaangular.ecotienda.Producto.ProductoRepository;
+import c1521mjavaangular.ecotienda.Producto.Productos;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +17,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,6 +30,7 @@ public class UsuariosServiceImpl implements UsuariosService {
 
     private final UsuariosRepository usuariosRepository;
     private final ModelMapper mapper;
+    private final ProductoRepository productoRepository;
 
     @Autowired
     private EmailService emailService;
@@ -93,4 +98,50 @@ public class UsuariosServiceImpl implements UsuariosService {
                 .map(usuario -> mapper.map(usuario, UsuariosResponse.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void addToFavorites(Long userId, Long productId) {
+        try {
+            if (userId == null || productId == null) {
+                throw new IllegalArgumentException("User ID and Product ID must not be null");
+            }
+
+            Optional<Usuarios> userOptional = usuariosRepository.findById(userId);
+            Optional<Productos> productOptional = productoRepository.findById(productId);
+
+            if (userOptional.isPresent() && productOptional.isPresent()) {
+                Usuarios user = userOptional.get();
+                Productos product = productOptional.get();
+
+                user.getFavoriteProducts().add(product);
+                product.getFavoritedByUsers().add(user);
+
+                usuariosRepository.save(user);
+                productoRepository.save(product);
+            } else {
+                throw new IdNotFoundException("Usuario o Producto no encontrado");
+            }
+
+            logger.info("Product {} added to favorites for user {}", productId, userId);
+        } catch (Exception e) {
+            logger.error("Error adding product {} to favorites for user {}: {}", productId, userId, e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public List<Productos> getFavoriteProducts(Long userId) {
+        Optional<Usuarios> userOptional = usuariosRepository.findById(userId);
+        return userOptional.map(Usuarios::getFavoriteProducts).orElse(new ArrayList<>());
+    }
+
+    @Override
+    public void removeFavoriteProduct(Long userId, Long productId) {
+        Usuarios user = usuariosRepository.findById(userId).orElseThrow(() -> new IdNotFoundException("Usario no encontrado"));
+        Productos product = productoRepository.findById(productId).orElseThrow(() -> new IdNotFoundException("Producto no encontrado"));
+
+        user.getFavoriteProducts().remove(product);
+        usuariosRepository.save(user);
+    }
+
 }
