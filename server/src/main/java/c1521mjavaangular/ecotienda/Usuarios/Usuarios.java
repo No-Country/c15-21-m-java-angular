@@ -1,6 +1,8 @@
 package c1521mjavaangular.ecotienda.Usuarios;
 
 import c1521mjavaangular.ecotienda.Producto.Productos;
+import c1521mjavaangular.ecotienda.ProductoRating.ProductRating;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -59,6 +61,10 @@ public class Usuarios implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
+
+    @OneToMany(mappedBy = "usuarios", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<ProductRating> ratings = new ArrayList<>();
 
     @Override
     public String getUsername() {

@@ -1,6 +1,7 @@
 package c1521mjavaangular.ecotienda.Producto;
 
 import c1521mjavaangular.ecotienda.Categoria.Categorias;
+import c1521mjavaangular.ecotienda.ProductoRating.ProductRating;
 import c1521mjavaangular.ecotienda.Usuarios.Usuarios;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -46,5 +47,8 @@ public class Productos {
     @ManyToMany(mappedBy = "favoriteProducts")
     @JsonIgnore
     private List<Usuarios> favoritedByUsers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductRating> ratings = new ArrayList<>();
 
 }
