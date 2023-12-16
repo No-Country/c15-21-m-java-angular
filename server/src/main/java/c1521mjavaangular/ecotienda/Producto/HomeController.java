@@ -22,6 +22,8 @@ import java.util.List;
 public class HomeController {
     @Autowired
     private ProductoService productoService;
+    @Autowired
+    private OrdenDetallesRepository ordenDetallesRepository;
     //Almacenar detalles de la orden
     List<OrdenDetalles> detalles = new ArrayList<OrdenDetalles>();
     //Datos de la Orden
@@ -57,6 +59,7 @@ public class HomeController {
         detalleOrden.setCantidad(cantidad);
         detalleOrden.setPrecioProducto(productos.getPrecio());
         detalleOrden.setProductos(productos);
+
 
         //Agregar detalle a la lista
         detalles.add(detalleOrden);
