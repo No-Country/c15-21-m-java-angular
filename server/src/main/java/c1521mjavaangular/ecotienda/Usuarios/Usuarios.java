@@ -1,5 +1,8 @@
 package c1521mjavaangular.ecotienda.Usuarios;
 
+import c1521mjavaangular.ecotienda.Producto.Productos;
+import c1521mjavaangular.ecotienda.ProductoRating.ProductRating;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -7,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -36,19 +40,38 @@ public class Usuarios implements UserDetails {
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
 
+    @Column(name = "verification_token")
+    private String verificationToken;
+    @Column(name = "token_expiration_time")
+    private LocalDateTime tokenExpirationTime;
+
     @Enumerated(EnumType.STRING)
     Role role;
 
     private boolean isEnabled;
+
+    @ManyToMany
+    @JoinTable(
+            name = "productos_favoritos",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "producto_id"))
+    private List<Productos> favoriteProducts = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
+    @OneToMany(mappedBy = "usuarios", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<ProductRating> ratings = new ArrayList<>();
+
     @Override
     public String getUsername() {
         return email;
+    }
+    public Long getUserId() {
+        return id;
     }
 
     @Override
