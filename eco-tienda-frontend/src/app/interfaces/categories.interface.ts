@@ -4,4 +4,5 @@ export interface CategoriesResponse {
   id: number;
   nombre: string;
   descripcion: string;
+  imagen: string;
 }

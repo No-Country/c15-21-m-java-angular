@@ -8,6 +8,7 @@ import { ListPageComponent } from './pages/list-page/list-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 
 import { CategoryPageComponent } from './pages/category-page/category-page.component';
+import { FeaturedPageComponent } from './pages/featured-page/featured-page.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'detail', component: DetailPageComponent },
       { path: 'list', component: ListPageComponent },
       { path: 'category', component: CategoryPageComponent },
+      { path: 'destacado', component: FeaturedPageComponent },
       { path: '**', redirectTo: 'home' },
     ],
   },

@@ -1,3 +1,3 @@
 export const environments = {
-  baseUrl: '',
+  baseUrl: '//vps-3800882-x.dattaweb.com:8080',
 };

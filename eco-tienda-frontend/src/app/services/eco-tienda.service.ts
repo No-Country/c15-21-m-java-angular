@@ -4,6 +4,7 @@ import { environments } from '../../environments/environments';
 import { Observable } from 'rxjs';
 import { ProductsResponse } from '../interfaces/products.interface';
 import { CategoriesResponse } from '../interfaces/categories.interface';
+import { ShoppingCartResponse } from '../interfaces/shoping-cart.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -18,9 +19,11 @@ export class EcoTiendaService {
       `${this.url}/administrador/productos`
     );
   }
+
   getCategories(): Observable<CategoriesResponse[]> {
-    return this.http.get<CategoriesResponse[]>(
-      `${this.url}/v1/categorias`
-    );
+    return this.http.get<CategoriesResponse[]>(`${this.url}/v1/categorias`);
+  }
+  getShoppingCart(): Observable<ShoppingCartResponse[]> {
+    return this.http.get<ShoppingCartResponse[]>(`${this.url}/home/cart`);
   }
 }
