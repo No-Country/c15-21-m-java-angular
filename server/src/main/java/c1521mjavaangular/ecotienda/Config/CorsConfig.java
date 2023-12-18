@@ -28,6 +28,19 @@ public class CorsConfig {
         config.setAllowedHeaders(Arrays.asList("*"));
 
         source.registerCorsConfiguration("/**", config);
+
+
+        CorsConfiguration configLocal = new CorsConfiguration();
+        configLocal.setAllowedOrigins(List.of("http://localhost:4200"));
+        // Configura otras opciones según sea necesario para "/ruta1"
+        config.addAllowedMethod("OPTIONS");
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("PUT");
+        config.addAllowedMethod("DELETE");
+        config.setAllowCredentials(true);
+        config.setAllowedHeaders(Arrays.asList("*"));
+        source.registerCorsConfiguration("/ruta1", configLocal);
         return new CorsFilter(source);
     }
 }
