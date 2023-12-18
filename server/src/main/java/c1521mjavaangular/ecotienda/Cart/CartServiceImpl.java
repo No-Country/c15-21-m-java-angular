@@ -3,9 +3,13 @@ package c1521mjavaangular.ecotienda.Cart;
 
 import c1521mjavaangular.ecotienda.Exceptions.APIException;
 import c1521mjavaangular.ecotienda.Exceptions.ResourceNotFoundException;
+import c1521mjavaangular.ecotienda.Orden.Orden;
+import c1521mjavaangular.ecotienda.Orden.OrdenDto;
 import c1521mjavaangular.ecotienda.Producto.ProductoDto;
 import c1521mjavaangular.ecotienda.Producto.ProductoRepository;
 import c1521mjavaangular.ecotienda.Producto.Productos;
+import c1521mjavaangular.ecotienda.Usuarios.Usuarios;
+import c1521mjavaangular.ecotienda.Usuarios.UsuariosRepository;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +31,26 @@ public class CartServiceImpl implements CartService {
     private CartItemsRepository cartItemsRepository;
 
     @Autowired
+    private UsuariosRepository usuariosRepository;
+
+    @Autowired
     private ModelMapper modelMapper;
+
+    @Override
+    public CartDTO createCart(String email) {
+        Usuarios usuarios = usuariosRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Usuarios", "emailId", email));
+        Cart cart = new Cart();
+        cart.setUsuarios(usuarios);
+        cart = cartRepository.save(cart);
+        return modelMapper.map(cart, CartDTO.class);
+
+    }
+
+    @Override
+    public CartDTO getCartDetails(Long cartId) {
+        Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new ResourceNotFoundException("Cart", "cartId", cartId));
+        return mapToCartDTO(cart);
+    }
 
     @Override
     public CartDTO addProductToCart(Long cartId, Long productId, Integer quantity) {
@@ -206,4 +229,19 @@ public class CartServiceImpl implements CartService {
 
         return "Product " + cartItem.getProductos().getNombre() + " removed from the cart !!!";
     }
+    private CartDTO mapToCartDTO(Cart cart) {
+        CartDTO cartDTO = modelMapper.map(cart, CartDTO.class);
+
+        List<ProductoDto> productDTOs = cart.getCartItems().stream()
+                .map(cartItems -> {
+                    ProductoDto productoDto = modelMapper.map(cartItems.getProductos(), ProductoDto.class);
+                    productoDto.setCantidad(cartItems.getQuantity());
+                    return productoDto;
+                }).collect(Collectors.toList());
+
+        cartDTO.setProducts(productDTOs);
+
+        return cartDTO;
+    }
+
 }

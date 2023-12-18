@@ -30,6 +30,7 @@ C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\
 C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\ProductoRating\ProductRatingDTO.java
 C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\Jwt\SignInRequest.java
 C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\Usuarios\UsuarioUpdateRequest.java
+C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\checkoutMP\PreferenceItem.java
 C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\Categoria\CategoriaController.java
 C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\Orden\OrdenDto.java
 C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\OrdenDetalles\OrdenDetalles.java
@@ -48,7 +49,9 @@ C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\
 C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\Cart\CartItemsRepository.java
 C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\Usuarios\Role.java
 C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\OrdenDetalles\OrdenDetallesRepository.java
+C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\checkoutMP\ProductoMPDTO.java
 C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\Email\EmailService.java
+C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\checkoutMP\CheckoutController.java
 C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\Jwt\SignUpRequest.java
 C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\Exceptions\APIException.java
 C:\Users\elduq\OneDrive\Desktop\programar\c15-21-m-java-angular\server\src\main\java\c1521mjavaangular\ecotienda\Cart\CartService.java

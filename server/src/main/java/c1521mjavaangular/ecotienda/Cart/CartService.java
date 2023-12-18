@@ -19,5 +19,11 @@ public interface CartService {
     void updateProductInCarts(Long cartId, Long productId);
 
     String deleteProductFromCart(Long cartId, Long productId);
+
+    CartDTO createCart(String email);
+
+    CartDTO getCartDetails(Long cartId);
+
+
     }
 
