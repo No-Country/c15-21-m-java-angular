@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,6 +43,13 @@ public class ProductoServiceImpl implements ProductoService {
     public Productos guardarProducto(Productos productos) {
         return this.productoRepository.save(productos);
     }
+
+    @Override
+    public Optional<ProductoDto> buscarProductoOptional(Long id) {
+        Optional<Productos> optionalProductos = productoRepository.findById(id);
+        return optionalProductos.map(this::convertEntityToDtoList);
+    }
+
 
     @Override
     public void eliminarProducto(Long id) {
@@ -91,4 +99,20 @@ public class ProductoServiceImpl implements ProductoService {
                 .map(ProductRatingDTO::new)
                 .collect(Collectors.toList());
     }
-}
+
+
+    public ProductoDto convertEntityToDtoList(Productos productos){
+        ProductoDto productoDto = new ProductoDto();
+        productoDto.setId(productos.getId());
+        productoDto.setNombre(productoDto.getNombre());
+        productoDto.setPrecio(productoDto.getPrecio());
+        productoDto.setStock(productoDto.getStock());
+        productoDto.setCategorias(productos.getCategorias());
+        productoDto.setDescripcion(productoDto.getDescripcion());
+        productoDto.setCodigo(productos.getCodigo());
+        productoDto.setImagen(productoDto.getImagen());
+        productoDto.setCantidad(productoDto.getCantidad());
+        return  productoDto;
+    }
+
+    }
