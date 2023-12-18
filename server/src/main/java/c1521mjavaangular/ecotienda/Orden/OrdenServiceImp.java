@@ -1,6 +1,5 @@
 package c1521mjavaangular.ecotienda.Orden;
 
-import c1521mjavaangular.ecotienda.Categoria.Categorias;
 import c1521mjavaangular.ecotienda.OrdenDetalles.OrdenDetalles;
 import c1521mjavaangular.ecotienda.OrdenDetalles.OrdenDetallesRepository;
 import c1521mjavaangular.ecotienda.Producto.ProductoDto;
@@ -39,9 +38,10 @@ public class OrdenServiceImp implements IOrdenService{
                 orden.setUsuarios(usuarioExistente);
                 orden.setPrecioTotal(500.0);
 
-                ordenRepository.save(orden);
+
                 List<OrdenDetalles> ordenDetallesList = getOrdenDetallesList(ordenDto, orden);
                 ordenDetallesRepository.saveAll(ordenDetallesList);
+                ordenRepository.save(orden);
             }
 
     }
@@ -58,9 +58,10 @@ public class OrdenServiceImp implements IOrdenService{
             ordenDetalles.setPrecioProducto(productos.getPrecio());
             ordenDetalles.setProductos(productos);
             ordenDetalles.setOrden(orden);
-            ordenDetalles.setSumaTotal(total);
             ordenDetallesList.add(ordenDetalles);
+
         }
+        orden.setPrecioTotal(total);
         return ordenDetallesList;
     }
 
