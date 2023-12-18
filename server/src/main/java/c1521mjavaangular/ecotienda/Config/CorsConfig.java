@@ -17,7 +17,8 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOriginPatterns(List.of("https://c15-21-m-java-angular-ovaspx2qe-my-team-a0db5045.vercel.app/"));
+        config.setAllowedOriginPatterns(List.of("https://c15-21-m-java-angular-ovaspx2qe-my-team-a0db5045.vercel.app/",
+                "http://localhost:4200"));
 
         config.addAllowedMethod("OPTIONS");
         config.addAllowedMethod("GET");
@@ -30,17 +31,6 @@ public class CorsConfig {
         source.registerCorsConfiguration("/**", config);
 
 
-        CorsConfiguration configLocal = new CorsConfiguration();
-        configLocal.setAllowedOrigins(List.of("http://localhost:4200"));
-        // Configura otras opciones según sea necesario para "/ruta1"
-        config.addAllowedMethod("OPTIONS");
-        config.addAllowedMethod("GET");
-        config.addAllowedMethod("POST");
-        config.addAllowedMethod("PUT");
-        config.addAllowedMethod("DELETE");
-        config.setAllowCredentials(true);
-        config.setAllowedHeaders(Arrays.asList("*"));
-        source.registerCorsConfiguration("/ruta1", configLocal);
         return new CorsFilter(source);
     }
 }
