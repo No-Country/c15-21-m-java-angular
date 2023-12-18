@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import {Location} from '@angular/common';
 import { ProductsResponse } from 'src/app/interfaces/products.interface';
 import { ShoppingCartResponse } from 'src/app/interfaces/shoping-cart.interface';
 import { EcoTiendaService } from 'src/app/services/eco-tienda.service';
@@ -14,6 +15,10 @@ export class CartPageComponent {
   public productList: ProductsResponse[] = [];
   public shoppingCart: ShoppingCartResponse[] = [];
 
+  
+  constructor(private _location: Location) 
+  {}
+  
   ngOnInit(): void {
     this.obtenerShoppingCart();
     this.obtenerProductsList();
@@ -37,5 +42,10 @@ export class CartPageComponent {
   }
 
   showModal(id: Number) {
+  }
+
+
+  backClicked() {
+    this._location.back();
   }
 }
