@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("buscar")
-@CrossOrigin(value = "http://localhost:4200") //Se Necesita la Url donde esta desplegado el fronted
+@CrossOrigin(value = "https://c15-21-m-java-angular-ovaspx2qe-my-team-a0db5045.vercel.app/") //Se Necesita la Url donde esta desplegado el fronted
 public class BuscarController {
     @Autowired
     private ProductoRepository productoRepository;

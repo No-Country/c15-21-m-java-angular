@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("home")
-@CrossOrigin(value = "http://localhost:4200") //Se Necesita la Url donde esta desplegado el fronted
+@CrossOrigin(value = "https://c15-21-m-java-angular-ovaspx2qe-my-team-a0db5045.vercel.app/") //Se Necesita la Url donde esta desplegado el fronted
 
 public class HomeController {
     @Autowired
@@ -47,46 +47,5 @@ public class HomeController {
             throw new RecursoNoEncontradoException("No se Encontro el id : " + id);
     }
 
-    @Operation(summary = "Añadir a Carrito compras")
-    @PostMapping("/cart")
-    public String agregarCarrito(@RequestParam Long id, @RequestParam Integer cantidad ){
-        Productos productos = productoService.buscarProducto(id);
-        double sumaTotal = 0;
-        if(productos == null){
-            throw new RecursoNoEncontradoException("No se encontro el producto con el id: " + id);
-        }
-        OrdenDetalles detalleOrden = new OrdenDetalles();
-        detalleOrden.setCantidad(cantidad);
-        detalleOrden.setPrecioProducto(productos.getPrecio());
-        detalleOrden.setProductos(productos);
-
-
-        //Agregar detalle a la lista
-        detalles.add(detalleOrden);
-        //Calcular suma total
-        sumaTotal = calcularSumaTotal();
-        return "Producto agregado al carrito con exito";
-    }
-
-    @Operation(summary = "Ver Carrito")
-    @GetMapping("/cart")
-    public ResponseEntity<List<OrdenDetalles>> verCarrito() {
-        if(detalles != null)
-            return ResponseEntity.ok(detalles);
-        else
-            throw new RecursoNoEncontradoException("No hay nada en el carrito");
-    }
-
-
-
-    private double calcularSumaTotal() {
-        return detalles.stream()
-                .mapToDouble(detalle -> {
-                    int cantidad = detalle.getCantidad();
-                    double precio = detalle.getPrecioProducto();
-                    return cantidad * precio;
-                })
-                .sum();
-    }
 }
 
