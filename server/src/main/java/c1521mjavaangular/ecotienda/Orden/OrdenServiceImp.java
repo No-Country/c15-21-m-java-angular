@@ -53,11 +53,12 @@ public class OrdenServiceImp implements IOrdenService{
             Productos productos = productoRepository.findById(productosEnOrden.getId()).get();
             total += productos.getPrecio() * productosEnOrden.getCantidad();
             OrdenDetalles ordenDetalles = new OrdenDetalles();
-            ordenDetalles.setDireccion("mi casa");
+            ordenDetalles.setDireccion(ordenDto.getDireccion());
             ordenDetalles.setCantidad(productosEnOrden.getCantidad());
             ordenDetalles.setPrecioProducto(productos.getPrecio());
             ordenDetalles.setProductos(productos);
             ordenDetalles.setOrden(orden);
+            ordenDetalles.setSumaTotal(total);
             ordenDetallesList.add(ordenDetalles);
         }
         return ordenDetallesList;
@@ -124,6 +125,7 @@ public class OrdenServiceImp implements IOrdenService{
             productoDto.setImagen(productos.getImagen());
             productoDto.setCategorias(productos.getCategorias());
             productoDto.setStock(productos.getStock());
+            productoDto.setDescripcion(productos.getDescripcion());
             productosList.add(productoDto);
         }
         ordenDto.setListaProducto(productosList);
