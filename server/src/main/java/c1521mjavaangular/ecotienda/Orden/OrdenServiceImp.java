@@ -124,6 +124,7 @@ public class OrdenServiceImp implements IOrdenService{
             productoDto.setImagen(productos.getImagen());
             productoDto.setCategorias(productos.getCategorias());
             productoDto.setStock(productos.getStock());
+            productoDto.setDescripcion(productos.getDescripcion());
             productosList.add(productoDto);
         }
         ordenDto.setListaProducto(productosList);

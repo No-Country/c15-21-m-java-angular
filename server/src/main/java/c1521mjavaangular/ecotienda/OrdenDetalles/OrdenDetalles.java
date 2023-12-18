@@ -23,6 +23,8 @@
         private String direccion;
         @Column(name = "precioProducto")
         private double precioProducto;
+        @Column(name = "sumaTotal")
+        private double sumaTotal;
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "orden_id")
         private Orden orden;
