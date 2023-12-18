@@ -17,5 +17,6 @@ public class OrdenDto {
     public Long id;
     public UsuariosDto usuariosDto;
     public List<ProductoDto> listaProducto;
+    public String direccion;
 
 }
