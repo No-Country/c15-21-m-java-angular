@@ -1,7 +1,10 @@
 package c1521mjavaangular.ecotienda.Cart;
 
+import c1521mjavaangular.ecotienda.Orden.OrdenDto;
 import c1521mjavaangular.ecotienda.Producto.ProductoRepository;
 import c1521mjavaangular.ecotienda.Producto.Productos;
+import c1521mjavaangular.ecotienda.Usuarios.Usuarios;
+import c1521mjavaangular.ecotienda.Usuarios.UsuariosRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -16,19 +19,35 @@ import java.util.List;
     @RequestMapping("/api/cart")
     public class CartController {
 
-        @Autowired
-        private CartService cartService;
+    @Autowired
+    private CartService cartService;
+
+    @Autowired
+    private UsuariosRepository usuariosRepository;
+
+    @Operation(summary = "Crear un carrito asociado a un usuario")
+    @PostMapping("/public/carts/user/{email}")
+    public ResponseEntity<CartDTO> createCartForUser(@PathVariable String email) {
+        CartDTO cartDTO = cartService.createCart(email);
+        return new ResponseEntity<>(cartDTO, HttpStatus.CREATED);
+    }
 
 
-        @Operation(summary = "agregar al carrito")
-        @PostMapping("/public/carts/{cartId}/products/{productId}/quantity/{quantity}")
-        public ResponseEntity<CartDTO> addProductToCart(@PathVariable Long cartId, @PathVariable Long productId, @PathVariable Integer quantity) {
-            CartDTO cartDTO = cartService.addProductToCart(cartId, productId, quantity);
+    @Operation(summary = "Obtener detalles del carrito")
+    @GetMapping("/public/carts/{cartId}")
+    public ResponseEntity<CartDTO> getCartDetails(@PathVariable Long cartId) {
+        CartDTO cartDTO = cartService.getCartDetails(cartId);
+        return new ResponseEntity<>(cartDTO, HttpStatus.OK);
+    }
 
-            return new ResponseEntity<CartDTO>(cartDTO, HttpStatus.CREATED);
-        }
 
+    @Operation(summary = "agregar al carrito")
+    @PostMapping("/public/carts/{cartId}/products/{productId}/quantity/{quantity}")
+    public ResponseEntity<CartDTO> addProductToCart(@PathVariable Long cartId, @PathVariable Long productId, @PathVariable Integer quantity) {
+        CartDTO cartDTO = cartService.addProductToCart(cartId, productId, quantity);
 
+        return new ResponseEntity<CartDTO>(cartDTO, HttpStatus.CREATED);
+    }
 
         @Operation(summary = "ver todos los carritos")
 

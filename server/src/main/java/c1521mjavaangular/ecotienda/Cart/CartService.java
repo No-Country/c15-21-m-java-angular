@@ -1,5 +1,6 @@
 package c1521mjavaangular.ecotienda.Cart;
 
+import c1521mjavaangular.ecotienda.Orden.OrdenDto;
 import c1521mjavaangular.ecotienda.Producto.ProductoDto;
 import c1521mjavaangular.ecotienda.Producto.Productos;
 
@@ -19,5 +20,12 @@ public interface CartService {
     void updateProductInCarts(Long cartId, Long productId);
 
     String deleteProductFromCart(Long cartId, Long productId);
-    }
+
+    CartDTO createCart(String email);
+
+    CartDTO getCartDetails(Long cartId);
+
+}
+
+
 

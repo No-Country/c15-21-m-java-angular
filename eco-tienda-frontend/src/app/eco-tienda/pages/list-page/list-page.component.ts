@@ -11,14 +11,18 @@ export class ListPageComponent implements OnInit {
   private tiendaService = inject(EcoTiendaService);
   public productList: ProductsResponse[] = [];
 
+  public isLoading: boolean = false;
+
   ngOnInit(): void {
     this.obtenerProductsList();
   }
 
   obtenerProductsList() {
+    this.isLoading = true;
     this.tiendaService.getProducts().subscribe({
       next: (products) => {
         this.productList = products;
+        this.isLoading = false;
       },
     });
   }

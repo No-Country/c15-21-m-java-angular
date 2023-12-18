@@ -106,7 +106,7 @@ public class ProductoServiceImpl implements ProductoService {
         productoDto.setId(productos.getId());
         productoDto.setNombre(productoDto.getNombre());
         productoDto.setPrecio(productoDto.getPrecio());
-        productoDto.setStock(productoDto.getStock());
+        productoDto.setStock(productos.getStock());
         productoDto.setCategorias(productos.getCategorias());
         productoDto.setDescripcion(productoDto.getDescripcion());
         productoDto.setCodigo(productos.getCodigo());

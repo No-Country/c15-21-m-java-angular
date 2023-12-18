@@ -1,4 +1,8 @@
-<section class="text-center p-5 space-y-4">
+<ng-template #loading>
+  <shared-loader></shared-loader>
+</ng-template>
+
+<section *ngIf="!isLoading; else loading" class="text-center p-5 space-y-4">
   <h2 class="text-2xl font-medium leading-tight lg:text-3xl text-gray-800">
     Listado de Productos
   </h2>
@@ -29,7 +33,7 @@
           />
         </a>
         <div class="mt-4 ml-3">
-          <a routerLink="/eco-tienda/detail">
+          <a [routerLink]="['/eco-tienda/detail', product.id]">
             <h3 class="text-gray-900 font-semibold text-xl tracking-tight">
               {{ product.nombre }}
             </h3>
