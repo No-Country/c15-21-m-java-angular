@@ -16,7 +16,7 @@ const routes: Routes = [
     component: LayoutPageComponent,
     children: [
       { path: 'home', component: HomePageComponent },
-      { path: 'detail', component: DetailPageComponent },
+      { path: 'detail/:id', component: DetailPageComponent },
       { path: 'list', component: ListPageComponent },
       { path: 'category', component: CategoryPageComponent },
       { path: 'destacado', component: FeaturedPageComponent },
