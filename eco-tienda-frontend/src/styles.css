@@ -26,3 +26,5 @@
     @apply before:ease-in relative h-12 w-40 overflow-hidden rounded-md border border-gray-800 bg-et-turmeric text-gray-700 transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:before:-translate-x-40;
   }
 }
+
+@import "ngx-toastr/toastr";
