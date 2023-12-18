@@ -1,1 +1,2 @@
-<p>layout-page works!</p>
+<h1 *ngIf="!finishedAuthCheck()">loading</h1>
+<router-outlet *ngIf="finishedAuthCheck()"></router-outlet>
