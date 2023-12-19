@@ -22,6 +22,8 @@ public class Orden {
     private Usuarios usuarios;
     @Column(name = "precioTotal")
     private double precioTotal;
+    @Column(name = "direccion")
+    private String direccion;
 
 
 }

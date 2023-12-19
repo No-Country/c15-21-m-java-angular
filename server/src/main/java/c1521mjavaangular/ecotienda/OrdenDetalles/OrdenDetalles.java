@@ -19,8 +19,6 @@
         private Long id;
         @Column(name = "cantidad")
         private Integer cantidad;
-        @Column(name = "direccion")
-        private String direccion;
         @Column(name = "precioProducto")
         private double precioProducto;
         @ManyToOne(fetch = FetchType.LAZY)

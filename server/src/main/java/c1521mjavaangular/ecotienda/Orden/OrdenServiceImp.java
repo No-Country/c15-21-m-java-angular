@@ -36,24 +36,23 @@ public class OrdenServiceImp implements IOrdenService{
             if (usuarioExistenteOptional.isPresent()){
                 Usuarios usuarioExistente = usuarioExistenteOptional.get();
                 orden.setUsuarios(usuarioExistente);
-                orden.setPrecioTotal(500.0);
+                orden.setDireccion(ordenDto.getDireccion());
 
 
                 List<OrdenDetalles> ordenDetallesList = getOrdenDetallesList(ordenDto, orden);
-                ordenDetallesRepository.saveAll(ordenDetallesList);
                 ordenRepository.save(orden);
+                ordenDetallesRepository.saveAll(ordenDetallesList);
             }
 
     }
 
     private List<OrdenDetalles> getOrdenDetallesList(OrdenDto ordenDto, Orden orden) {
-        int total = 0;
+        double total = 0;
         List<OrdenDetalles> ordenDetallesList = new ArrayList<>();
         for (ProductoDto productosEnOrden: ordenDto.getListaProducto()){
             Productos productos = productoRepository.findById(productosEnOrden.getId()).get();
             total += productos.getPrecio() * productosEnOrden.getCantidad();
             OrdenDetalles ordenDetalles = new OrdenDetalles();
-            ordenDetalles.setDireccion(ordenDto.getDireccion());
             ordenDetalles.setCantidad(productosEnOrden.getCantidad());
             ordenDetalles.setPrecioProducto(productos.getPrecio());
             ordenDetalles.setProductos(productos);
@@ -115,6 +114,7 @@ public class OrdenServiceImp implements IOrdenService{
         usuarioDto.setEmail(orden.getUsuarios().getEmail());
         ordenDto.setId(orden.getId());
         ordenDto.setUsuariosDto(usuarioDto);
+        ordenDto.setDireccion(orden.getDireccion());
         for (OrdenDetalles ordenDetalles: ordenDetallesList){
             Productos productos = productoRepository.findById(ordenDetalles.getProductos().getId()).get();
             ProductoDto productoDto = new ProductoDto();
