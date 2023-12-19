@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Error404PageComponent } from './shared/pages/error404-page/error404-page.component';
+import { isAuthenticatedGuard } from './guards/is-authenticated.guard';
+import { alreadyLoggedGuard } from './guards/already-logged.guard';
 
 const routes: Routes = [
   {
     path: 'auth',
+    canActivate: [alreadyLoggedGuard],
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
@@ -14,6 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'shopping-cart',
+    canActivate: [isAuthenticatedGuard],
     loadChildren: () =>
       import('./shopping-cart/shopping-cart.module').then(
         (m) => m.ShoppingCartModule

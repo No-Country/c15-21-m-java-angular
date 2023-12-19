@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { EcoTiendaService } from 'src/app/services/eco-tienda.service';
 import { ProductsResponse } from '../../../interfaces/products.interface';
-import { CategoriesResponse } from '../../../interfaces/products.interface';
+import { CategoriesResponse } from 'src/app/interfaces/categories.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -9,35 +9,35 @@ import { CategoriesResponse } from '../../../interfaces/products.interface';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
-  public categoryList: CategoriesResponse[] = [];
-  public productList: ProductsResponse[] = [];
-
   private tiendaService = inject(EcoTiendaService);
 
-  // public listProducts = [
-  //   { title: 'Jabones Naturales', path: '../../../../assets/et_jabones.png' },
-  //   { title: 'Higiene Dental', path: '../../../../assets/et_dental.png' },
-  //   { title: 'Champú Sólido', path: '../../../../assets/et_shampu.png' },
-  //   {
-  //     title: 'Desodorantes Sólidos',
-  //     path: '../../../../assets/et_desodorantes.png',
-  //   },
-  //   { title: 'Cuidado de la Piel', path: '../../../../assets/et_cremas.png' },
-  //   { title: 'Cosmética Facial', path: '../../../../assets/et_cosmetica.png' },
-  // ];
+  public productList: ProductsResponse[] = [];
+  public categoriesList: CategoriesResponse[] = [];
+
+  public isLoadingCategories: boolean = false;
+  public isLoadingProducts: boolean = false;
 
   ngOnInit(): void {
-    this.tiendaService.getCategories().subscribe({
-      next: (category) => {
-        this.categoryList = category;
-        console.log(category);
-      },
-    });
+    this.obtenerProductsList();
+    this.obtenerCategoriesList();
+  }
 
+  obtenerProductsList() {
+    this.isLoadingProducts = true;
     this.tiendaService.getProducts().subscribe({
       next: (products) => {
         this.productList = products;
-        console.log(products);
+        this.isLoadingProducts = false;
+      },
+    });
+  }
+
+  obtenerCategoriesList() {
+    this.isLoadingCategories = true;
+    this.tiendaService.getCategories().subscribe({
+      next: (categorias) => {
+        this.categoriesList = categorias;
+        this.isLoadingCategories = false;
       },
     });
   }
@@ -49,7 +49,7 @@ export class HomePageComponent implements OnInit {
   }
 
   // Método para filtrar categorías
-  filterCategories(): CategoriesResponse[] {
-    return this.categoryList.filter((categoria) => this.debeMostrarse(categoria));
-  }
+  // filterCategories(): CategoriesResponse[] {
+  //   return this.categoryList.filter((categoria) => this.debeMostrarse(categoria));
+  // }
 }

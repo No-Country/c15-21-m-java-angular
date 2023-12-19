@@ -3,11 +3,11 @@ import { EcoTiendaService } from '../../../services/eco-tienda.service';
 import { ProductsResponse } from '../../../interfaces/products.interface';
 
 @Component({
-  selector: 'app-list-page',
-  templateUrl: './list-page.component.html',
-  styleUrls: ['./list-page.component.css'],
+  selector: 'app-featured-page',
+  templateUrl: './featured-page.component.html',
+  styleUrls: ['./featured-page.component.css'],
 })
-export class ListPageComponent implements OnInit {
+export class FeaturedPageComponent implements OnInit {
   private tiendaService = inject(EcoTiendaService);
   public productList: ProductsResponse[] = [];
 

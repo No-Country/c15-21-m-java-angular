@@ -3,7 +3,8 @@ import { Injectable, inject } from '@angular/core';
 import { environments } from '../../environments/environments';
 import { Observable } from 'rxjs';
 import { ProductsResponse } from '../interfaces/products.interface';
-import { CategoriesResponse } from '../interfaces/products.interface';
+import { CategoriesResponse } from '../interfaces/categories.interface';
+import { DetailResponse } from '../interfaces/detail.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -27,4 +28,9 @@ export class EcoTiendaService {
   }
 
 
+  searchProductDetail(id: string): Observable<DetailResponse> {
+    return this.http.get<DetailResponse>(
+      `${this.url}/administrador/productos/${id}`
+    );
+  }
 }
