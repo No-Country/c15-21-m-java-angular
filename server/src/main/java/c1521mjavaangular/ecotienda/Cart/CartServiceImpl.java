@@ -229,12 +229,15 @@ public class CartServiceImpl implements CartService {
 
         return "Product " + cartItem.getProductos().getNombre() + " removed from the cart !!!";
     }
-    private CartDTO mapToCartDTO(Cart cart) {
+        private CartDTO mapToCartDTO(Cart cart) {
         CartDTO cartDTO = modelMapper.map(cart, CartDTO.class);
 
         List<ProductoDto> productDTOs = cart.getCartItems().stream()
-                .map(p -> modelMapper.map(p.getProductos(), ProductoDto.class))
-                .collect(Collectors.toList());
+                .map(cartItems -> {
+                    ProductoDto productoDto = modelMapper.map(cartItems.getProductos(), ProductoDto.class);
+                    productoDto.setCantidad(cartItems.getQuantity());
+                    return productoDto;
+                }).collect(Collectors.toList());
 
         cartDTO.setProducts(productDTOs);
 
