@@ -132,14 +132,7 @@ public class CartServiceImpl implements CartService {
             throw new ResourceNotFoundException("Cart", "cartId", cartId);
         }
 
-        CartDTO cartDTO = modelMapper.map(cart, CartDTO.class);
-
-        List<ProductoDto> products = cart.getCartItems().stream()
-                .map(p -> modelMapper.map(p.getProductos(), ProductoDto.class)).collect(Collectors.toList());
-
-        cartDTO.setProducts(products);
-
-        return cartDTO;
+        return mapToCartDTO(cart);
     }
 
     @Override
@@ -229,7 +222,7 @@ public class CartServiceImpl implements CartService {
 
         return "Product " + cartItem.getProductos().getNombre() + " removed from the cart !!!";
     }
-        private CartDTO mapToCartDTO(Cart cart) {
+    private CartDTO mapToCartDTO(Cart cart) {
         CartDTO cartDTO = modelMapper.map(cart, CartDTO.class);
 
         List<ProductoDto> productDTOs = cart.getCartItems().stream()
