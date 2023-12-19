@@ -17,7 +17,7 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOriginPatterns(List.of("https://c15-21-m-java-angular-ovaspx2qe-my-team-a0db5045.vercel.app/",
+        config.setAllowedOriginPatterns(List.of("https://*",
                 "http://localhost:4200"));
 
         config.addAllowedMethod("OPTIONS");
