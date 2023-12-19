@@ -67,14 +67,14 @@
   </div>
   <!-- Category -->
   <div class="flex flex-wrap mt-3">
-    <div class="lg:w-1/3 w-full lg:pl-3 pb-3" *ngFor="let item of listProducts">
+    <div class="lg:w-1/3 w-full lg:pl-3 pb-3" *ngFor="let categoria of filterCategories()">
       <div class="card p-0 relative text-et-citrine-white">
         <div class="card-overlay"></div>
-        <img [src]="item.path" alt="" class="card-img h-full" />
+        <img [src]="categoria.imagen" alt="" class="card-img h-full" />
         <a routerLink="/eco-tienda/list">
           <div class="p-6 absolute inset-0 z-20">
             <div class="h-full flex justify-center items-center">
-              <h2 class="card-title">{{ item.title }}</h2>
+              <h2 class="card-title">{{ categoria.nombre }}</h2>
             </div>
           </div>
         </a>

@@ -5,13 +5,14 @@ export interface ProductsResponse {
   nombre: string;
   precio: number;
   stock: number;
-  categorias: Categoria[];
+  categorias: CategoriesResponse[];
   codigo: string;
   imagen: string;
 }
 
-export interface Categoria {
+export interface CategoriesResponse {
   id: number;
   nombre: string;
   descripcion: string;
+  imagen: string;
 }
