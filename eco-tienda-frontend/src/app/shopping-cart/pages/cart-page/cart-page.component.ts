@@ -20,8 +20,10 @@ export class CartPageComponent {
   {}
   
   ngOnInit(): void {
-    this.obtenerShoppingCart();
     this.obtenerProductsList();
+    this.obtenerShoppingCart();
+   /*  this.crearShoppingCart();
+    this.agregarAlShoppingCart(); */
   }
 
   obtenerProductsList(){
@@ -32,11 +34,28 @@ export class CartPageComponent {
       }
     })
   }
-
+  
   obtenerShoppingCart(){
     this.tiendaService.getShoppingCart().subscribe({
       next: (shoppingCart) => {
         this.shoppingCart = shoppingCart
+        console.log(this.shoppingCart)
+      }
+    })
+  }
+  crearShoppingCart(){
+    this.tiendaService.createShoppingCart("alexiz@gmail.com").subscribe({
+      next: (shoppingCart) => {
+        this.shoppingCart = shoppingCart
+        console.log(this.shoppingCart)
+      }
+    })
+  }
+  agregarAlShoppingCart(){
+    this.tiendaService.addToShoppingCart(1,5,3).subscribe({
+      next: (shoppingCart) => {
+        this.shoppingCart = shoppingCart
+        console.log(this.shoppingCart)
       }
     })
   }
