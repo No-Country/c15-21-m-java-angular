@@ -4,6 +4,7 @@ import c1521mjavaangular.ecotienda.Usuarios.Usuarios;
 import c1521mjavaangular.ecotienda.Usuarios.UsuariosRepository;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +19,13 @@ public class AuthenticationController {
     private final UsuariosRepository usuariosRepository;
 
     @PostMapping("/registrarse")
-    public JwtAuthenticationResponse signup(@RequestBody SignUpRequest request) throws MessagingException, IOException {
-        return authenticationService.signup(request);
+    public ResponseEntity<?> signup(@RequestBody SignUpRequest request) throws MessagingException, IOException {
+        if (!request.isValidEmail()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Correo inválido");
+        }
+
+        JwtAuthenticationResponse response = authenticationService.signup(request);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/iniciarSesion")
