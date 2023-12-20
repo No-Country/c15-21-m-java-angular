@@ -4,7 +4,7 @@ import { environments } from '../../environments/environments';
 import { Observable } from 'rxjs';
 import { ProductsResponse } from '../interfaces/products.interface';
 import { CategoriesResponse } from '../interfaces/categories.interface';
-import { ShoppingCartResponse } from '../interfaces/shoping-cart.interface';
+import { ShoppingCartResponse ,ShoppingCartIdResponse } from '../interfaces/shoping-cart.interface';
 import { DetailResponse } from '../interfaces/detail.interface';
 
 @Injectable({
@@ -29,13 +29,27 @@ export class EcoTiendaService {
       `${this.url}/administrador/productos/${id}`
     );
   }
-  getShoppingCart(): Observable<ShoppingCartResponse[]> {
-    return this.http.get<ShoppingCartResponse[]>(`${this.url}/api/cart/admin/carts/2`);
+
+  //*********CARRITO *****************
+  editProductShoppingCart(cartId: Number,productId: Number,quantity: Number): Observable<any> {
+    return this.http.put(`${this.url}/api/cart/public/carts/${cartId}/products/${productId}/quantity/${quantity}`,{cartId: cartId, productId: productId, quantity: Number});
   }
-  createShoppingCart(email: String): Observable<ShoppingCartResponse[]> {
-    return this.http.get<ShoppingCartResponse[]>(`${this.url}/api/cart/public/carts/user/${email}?email=${email}`);
+  addToShoppingCart(cart: Number,product: Number,quantity: Number): Observable<any> {
+    return this.http.post(`${this.url}/api/cart/public/carts/${cart}/products/${product}/quantity/${quantity}?cartId=${cart}&productId=${product}&quantity=${quantity}`,{cart: Number,product: Number,quantity: Number});
   }
-  addToShoppingCart(cart: Number,product: Number,quantity: Number): Observable<ShoppingCartResponse[]> {
-    return this.http.get<ShoppingCartResponse[]>(`${this.url}api/cart/public/carts/${cart}/products/${product}/quantity/${quantity}?cartId=${cart}&productId=${product}&quantity=${quantity}`);
+  createShoppingCart(email: String): Observable<any> {
+    return this.http.post(`${this.url}/api/cart/public/carts/user/${email}?email=${email}`,{email: email});
+  } 
+
+
+  
+  getShoppingCartId(id: Number): Observable<ShoppingCartIdResponse[]> {
+    return this.http.get<ShoppingCartIdResponse[]>(`${this.url}/api/cart/public/carts/${id}`);
+  }
+  getShoppingCarts(): Observable<ShoppingCartResponse[]> {
+    return this.http.get<ShoppingCartResponse[]>(`${this.url}/api/cart/admin/carts`);
+  }
+  deleteProductShoppingCart(cartId: Number,productId: Number): Observable<any> {
+    return this.http.delete(`${this.url}/api/cart/public/carts/${cartId}/product/${productId}`);
   }
 }

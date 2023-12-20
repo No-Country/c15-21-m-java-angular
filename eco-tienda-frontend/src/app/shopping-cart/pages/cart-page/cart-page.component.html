@@ -5,37 +5,19 @@
     <div class="flex flex-col md:flex-row justify-between space-y-4 md:space-x-4">
 
         <section id="product-list" class="space-y-4 w-full md:w-3/5">
-            <article class="bg-white p-3 flex rounded-lg shadow-md">
-                <img src="../../../../assets/r_1.png" alt="" class="w-1/5">
+            <article class="bg-white p-3 flex rounded-lg shadow-md" *ngFor="let product of productsShoppingCart">
+                <img [src]="product.imagen" alt="" class="w-1/5">
                 <div class="px-4 flex flex-col justify-around w-3/5">
-                    <h2 class="text-2xl font-medium leading-tight lg:text-3xl">Nombre del producto</h2>
-                    <div class="flex items-center">
-                        <h3 class="w-10 text-2xl font-medium leading-tight lg:text-3xl">0</h3>
-                        <h3 class="text-2xl font-medium leading-tight lg:text-2xl">x $ 0.00</h3>
+                    <h2 class="text-2xl font-medium leading-tight lg:text-3xl">{{product.nombre}}</h2>
+                    <div class="flex items-center w-full">
+                        <h3 class="text-2xl font-medium leading-tight lg:text-2xl">{{product.cantidad}} uds. x $ {{product.precio}}</h3>
+                        <!-- <h3 class="text-2xl font-medium leading-tight lg:text-2xl">x $ {{product.precio}}</h3> -->
 
                     </div>
                 </div>
                 <div class="w-1/5 flex flex-col lg:flex-row  justify-evenly items-center">
 
-                    <h3 class="text-2xl font-medium leading-tight lg:text-3xl text-right">$ 0.00 </h3>
-                    
-                    <a href="" class="text-2xl text-red-600"><i class="fa-solid fa-trash"></i></a>
-                </div>
-
-            </article>
-            <article class="bg-white p-3 flex rounded-lg shadow-md">
-                <img src="../../../../assets/r_1.png" alt="" class="w-1/5">
-                <div class="px-4 flex flex-col justify-around w-3/5">
-                    <h2 class="text-2xl font-medium leading-tight lg:text-3xl">Nombre del producto</h2>
-                    <div class="flex items-center">
-                        <h3 class="w-10 text-2xl font-medium leading-tight lg:text-3xl">0</h3>
-                        <h3 class="text-2xl font-medium leading-tight lg:text-2xl">x $ 0.00</h3>
-
-                    </div>
-                </div>
-                <div class="w-1/5 flex flex-col lg:flex-row  justify-evenly items-center">
-
-                    <h3 class="text-2xl lg:text-3xl font-medium leading-tight text-right">$ 0.00 </h3>
+                    <h3 class="text-2xl font-medium leading-tight lg:text-3xl text-right">$ {{product.precio * product.cantidad}} </h3>
                     
                     <a href="" class="text-2xl text-red-600"><i class="fa-solid fa-trash"></i></a>
                 </div>
@@ -48,7 +30,7 @@
 
                 <div class="flex justify-between">
                     <h2 class="text-2xl lg:text-3xl">Subtotal:</h2>
-                    <h2 class="text-2xl lg:text-3xl">$ 0.00</h2>
+                    <h2 class="text-2xl lg:text-3xl">$ {{shoppingCart.totalPrice}}</h2>
                 </div>
 
 
@@ -66,8 +48,8 @@
             <article>
 
                 <h2>Destacados</h2>
-                <div class="flex  space-x-4">
-                    <div *ngFor="let product of productList | slice : 0:2 " class="w-1/2  p-2 rounded shadow-md">
+                <div class="flex flex-wrap">
+                    <div *ngFor="let product of productList | slice : 0 : 4 " class="w-1/2 p-2 rounded shadow-md flex flex-col justify-between">
                         <h2>{{product.nombre}}</h2>
                         <div class="flex justify-between items-center">
                             <img src="{{product.imagen}}" alt="" class="w-1/3">
