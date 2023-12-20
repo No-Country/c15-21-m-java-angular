@@ -15,4 +15,7 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
     @Query("SELECT c FROM Cart c JOIN FETCH c.cartItems ci JOIN FETCH ci.productos p WHERE p.id = ?1")
     List<Cart> findCartsByProductId(Long productId);
 
+    @Query("SELECT c FROM Cart c WHERE c.usuarios.email = ?1")
+    Cart findByEmail(String email);
+
 }
