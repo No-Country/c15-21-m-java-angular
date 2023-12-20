@@ -55,8 +55,6 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/administrador/productos").permitAll()
 
                                 .requestMatchers(HttpMethod.POST, "/v1/iniciarSesion", "/v1/registrarse").permitAll()
-
-                                .requestMatchers(HttpMethod.PUT, "/v1/users/**").hasAnyRole("USER")
                 )
 
                 .sessionManagement(session -> session
