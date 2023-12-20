@@ -30,6 +30,12 @@ public class AuthenticationService {
     private final EmailService emailService;
 
     public JwtAuthenticationResponse signup(SignUpRequest request) throws MessagingException, IOException {
+
+        if (usuariosRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("Ya existe un usuario con este email. Por favor ingrese otro email.");
+        }
+
+
         var user = Usuarios
                 .builder()
                 .nombre(request.getNombre())
@@ -39,7 +45,6 @@ public class AuthenticationService {
                 .isEnabled(true)
                 .build();
 
-
         String verificationToken = UUID.randomUUID().toString();
         user.setVerificationToken(verificationToken);
 
@@ -48,10 +53,8 @@ public class AuthenticationService {
 
         user = usuariosServiceImpl.save(user);
 
-        String verificationLink = "http://vps-3785405-x.dattaweb.com:8080//v1/auth/verify?token=" + verificationToken;
+        String verificationLink = "https://c15-21-m-java-angular-production.up.railway.app/v1/auth/verify?token=" + verificationToken;
         emailService.sendEcoTiendaConfirmationEmail(user.getEmail(), verificationLink, user.getNombre());
-
-
 
         user = usuariosServiceImpl.save(user);
         var jwt = jwtService.generateToken(user);
