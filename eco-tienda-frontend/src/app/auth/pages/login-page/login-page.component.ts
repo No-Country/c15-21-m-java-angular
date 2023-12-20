@@ -23,8 +23,8 @@ export class LoginPageComponent {
   private router = inject(Router);
 
   public loginForm: FormGroup = this.fb.group({
-    email: ['alexiz@gmail.com', [Validators.required, Validators.email]],
-    password: ['1234567', [Validators.required, Validators.minLength(6)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(4)]],
   });
 
   isValidField(field: string) {

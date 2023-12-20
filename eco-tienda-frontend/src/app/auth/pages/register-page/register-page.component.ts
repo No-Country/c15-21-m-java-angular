@@ -35,8 +35,8 @@ export class RegisterPageComponent {
           Validators.pattern(this.validatorsService.emailPattern),
         ],
       ],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      password2: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
+      password2: ['', [Validators.required, Validators.minLength(4)]],
       termsAndConditions: [false, Validators.requiredTrue],
     },
     {
