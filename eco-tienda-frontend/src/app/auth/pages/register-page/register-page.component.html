@@ -2,7 +2,12 @@
   class="container mx-auto flex p-5 md:flex-row flex-col items-center relative"
 >
   <div class="lg:flex-grow flex items-center justify-center">
-    <form class="flex flex-col text-center">
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="register()"
+      class="flex flex-col text-center"
+      autocomplete="off"
+    >
       <h2 class="text-4xl font-bold text-et-turmeric">Registrarse</h2>
 
       <div class="flex m-3 rounded border-gray-300 border border-solid">
@@ -16,8 +21,15 @@
           type="text"
           name="name"
           placeholder="Nombre y apellido"
+          formControlName="fullName"
         />
       </div>
+      <span
+        *ngIf="isValidField('fullName')"
+        class="text-red-500 text-sm text-right pr-3"
+      >
+        Debe de ser en formato de nombre y apellido
+      </span>
       <div class="flex m-3 rounded border-gray-300 border border-solid">
         <div
           class="rounded border-gray-300 border border-solid h-full w-10 flex items-center justify-center p-4"
@@ -29,8 +41,15 @@
           type="text"
           name="user"
           placeholder="Correo electrónico"
+          formControlName="email"
         />
       </div>
+      <span
+        *ngIf="isValidField('email')"
+        class="text-red-500 text-sm text-right pr-3"
+      >
+        Verifica que tu correo electrónico tenga el formato correcto
+      </span>
       <div
         class="flex m-3 rounded border-gray-300 border border-solid items-center"
       >
@@ -44,9 +63,16 @@
           type="password"
           name="email"
           placeholder="Constraseña"
+          formControlName="password"
         />
         <a class="p-3"><i class="fa fa-eye"></i></a>
       </div>
+      <span
+        *ngIf="isValidField('password')"
+        class="text-red-500 text-sm text-right pr-3"
+      >
+        La contraseña debe ser mayor de 6 caracteres.
+      </span>
       <div
         class="flex m-3 rounded border-gray-300 border border-solid items-center"
       >
@@ -60,13 +86,21 @@
           type="password"
           name="email"
           placeholder="Repetir Constraseña"
+          formControlName="password2"
         />
         <a class="p-3"><i class="fa fa-eye"></i></a>
       </div>
-      <div class="flex p-3 justify-center items-center">
+      <span
+        *ngIf="isValidField('password2')"
+        class="text-red-500 text-sm text-right pr-3"
+      >
+        Las contraseñas deben de ser iguales.
+      </span>
+      <div class="flex px-3 pt-3 justify-center items-center">
         <input
           type="checkbox"
-          name="terminos"
+          name="termsAndConditions"
+          formControlName="termsAndConditions"
           class="w-5 h-5 border border-gray-400 rounded m-3"
         />
         <p>
@@ -74,8 +108,14 @@
           <a class="text-et-turmeric font-bold"> Terminos y condiciones</a>
         </p>
       </div>
-      <div class="flex justify-center">
-        <button class="et-p-btn">Registrarme</button>
+      <span
+        *ngIf="isValidField('termsAndConditions')"
+        class="text-red-500 text-sm text-right pr-3"
+      >
+        Tu registro requiere la aceptación de nuestras condiciones.
+      </span>
+      <div class="flex justify-center pt-4">
+        <button class="et-p-btn" type="submit">Registrarme</button>
       </div>
       <div class="flex p-3 justify-center">
         <p>

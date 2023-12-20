@@ -52,4 +52,22 @@ export class AuthService {
     localStorage.removeItem('token');
     this._authStatus.set(AuthStatus.notAuthenticated);
   }
+
+  register(name: string, email: string, password: string): Observable<boolean> {
+    const url = `${this.baseUrl}/v1/registrarse`;
+    const body = { name, email, password };
+
+    return this.http.post<LoginResponse>(url, body).pipe(
+      tap(({ token }) => {
+        this._authStatus.set(AuthStatus.authenticated);
+        localStorage.setItem('token', token);
+      }),
+      map(() => true),
+      catchError((err) => {
+        console.log(err);
+
+        return throwError(() => 'Sus credenciales no son válidas');
+      })
+    );
+  }
 }
