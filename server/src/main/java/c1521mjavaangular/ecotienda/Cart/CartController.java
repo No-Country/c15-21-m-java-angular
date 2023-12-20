@@ -40,6 +40,13 @@ import java.util.List;
         return new ResponseEntity<>(cartDTO, HttpStatus.OK);
     }
 
+    @Operation(summary = "Obtener carrito por email")
+    @GetMapping("/public/carts/email/{emailId}")
+    public  ResponseEntity<CartDTO> getCartDetailsbyEmail(@PathVariable String emailId){
+        CartDTO cartDTO = cartService.getCartbyEmail(emailId);
+        return  new ResponseEntity<>(cartDTO, HttpStatus.OK);
+    }
+
 
     @Operation(summary = "agregar al carrito")
     @PostMapping("/public/carts/{cartId}/products/{productId}/quantity/{quantity}")

@@ -53,6 +53,12 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public CartDTO getCartbyEmail(String email) {
+        Cart cart = cartRepository.findByEmail(email);
+        return  mapToCartDTO(cart);
+    }
+
+    @Override
     public CartDTO addProductToCart(Long cartId, Long productId, Integer quantity) {
 
         Cart cart = cartRepository.findById(cartId)

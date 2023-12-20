@@ -3,7 +3,7 @@
 >
   <div class="lg:flex-grow flex items-center justify-center">
     <form
-      [formGroup]="myForm"
+      [formGroup]="loginForm"
       (ngSubmit)="login()"
       class="flex flex-col text-center"
       autocomplete="off"
@@ -20,9 +20,15 @@
           class="w-full p-3"
           type="text"
           name="user"
-          placeholder="Usuario o correo"
+          placeholder="Correo electrónico"
         />
       </div>
+      <span
+        *ngIf="isValidField('email')"
+        class="text-red-500 text-sm text-right pr-3"
+      >
+        Este campo es requerido
+      </span>
       <div
         class="flex m-3 rounded border-gray-300 border border-solid items-center"
       >
@@ -40,8 +46,13 @@
         />
         <a class="p-3"><i class="fa fa-eye"></i></a>
       </div>
-
-      <div class="flex p-3 justify-between items-center">
+      <span
+        *ngIf="isValidField('password')"
+        class="text-red-500 text-sm text-right pr-3"
+      >
+        Este campo es requerido
+      </span>
+      <div class="flex flex-col md:flex-row p-3 justify-between items-center">
         <div class="flex items-center">
           <input
             type="checkbox"
@@ -50,15 +61,13 @@
           />
           <a class="text-et-turmeric font-bold">Recuérdeme</a>
         </div>
-        <button [disabled]="myForm.invalid" type="submit" class="et-p-btn">
-          Iniciar sesión
-        </button>
+        <button type="submit" class="et-p-btn">Iniciar sesión</button>
       </div>
       <div class="flex p-3 justify-between text-et-turmeric font-bold">
         <a>¿Olvidó su contraseña?</a>
         <a routerLink="/auth/new-account">Regístrate ahora</a>
       </div>
-      <p class="text-et-turmeric font-bold">
+      <p class="text-et-turmeric font-bold invisible md:visible">
         _________________ o _________________
       </p>
       <button

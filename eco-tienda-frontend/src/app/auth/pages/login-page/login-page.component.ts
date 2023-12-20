@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 
 import { ToastrService } from 'ngx-toastr';
+import { ValidatorsService } from '../../../services/validators.service';
 
 @Component({
   selector: 'app-login-page',
@@ -15,29 +16,38 @@ export class LoginPageComponent {
   private fb = inject(FormBuilder);
 
   private authService = inject(AuthService);
+  private validatorsService = inject(ValidatorsService);
 
   private toastr = inject(ToastrService);
 
   private router = inject(Router);
 
-  public myForm: FormGroup = this.fb.group({
-    email: ['alexiz@gmail.com', [Validators.required, Validators.email]],
-    password: ['1234567', [Validators.required, Validators.minLength(6)]],
+  public loginForm: FormGroup = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(4)]],
   });
 
+  isValidField(field: string) {
+    return this.validatorsService.isValidField(this.loginForm, field);
+  }
+
   login() {
-    console.log(this.myForm.value);
-    const { email, password } = this.myForm.value;
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+
+    const { email, password } = this.loginForm.value;
     this.authService.login(email, password).subscribe({
       next: () => {
+        this.loginForm.reset();
         this.router.navigateByUrl('/eco-tienda');
       },
       error: (error) => {
+        this.loginForm.reset();
         this.toastr.warning(`${error}`, '', {
           progressBar: true,
         });
-
-        console.log({ loginError: error });
       },
     });
   }

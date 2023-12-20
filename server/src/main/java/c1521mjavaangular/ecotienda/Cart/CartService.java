@@ -25,6 +25,8 @@ public interface CartService {
 
     CartDTO getCartDetails(Long cartId);
 
+    CartDTO getCartbyEmail(String email);
+
 }
 
 
