@@ -15,7 +15,7 @@ export class CartPageComponent {
   private tiendaService = inject(EcoTiendaService);
   public productList: ProductsResponse[] = [];
   public productsShoppingCart: Products[] = [];
-  public shoppingCart: any = { product: [] };
+  public shoppingCart: any = [];
   public ShoppingCartId = Number(localStorage.getItem('cartId'));
 
 
