@@ -18,6 +18,9 @@ export class HomePageComponent implements OnInit {
   public isLoadingCategories: boolean = false;
   public isLoadingProducts: boolean = false;
 
+  
+  public shoppingCart: any = [];
+
   ngOnInit(): void {
     this.obtenerProductsList();
     this.obtenerCategoriesList();
@@ -49,6 +52,19 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  agregarAlShoppingCart(cart: Number, product: Number, quantity: Number) {
+    this.tiendaService.addToShoppingCart(cart, product, quantity).subscribe({
+      next: (shoppingCart) => {
+        this.shoppingCart = shoppingCart;
+        console.log(this.shoppingCart);
+        Swal.fire("¡Producto agregado!", "", "success");
+      }, error: (error) => {
+        console.log(error);
+        Swal.fire("¡No se pudo agregar el producto!", "", "error");
+      }
+    })
+  }
+
   showModal(id: Number) {
     Swal.fire({
       title: `Agregar
@@ -70,10 +86,8 @@ export class HomePageComponent implements OnInit {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         let cantidad = document.getElementById("cantidad") as HTMLInputElement;
-        let cantidadValue = cantidad.value;
-        console.log("agregar " + cantidadValue + " productos id: " + id)
-
-        Swal.fire("Producto agregado!", "", "success");
+        let cantidadValue = parseInt(cantidad.value);
+        this.agregarAlShoppingCart(Number(localStorage.getItem('cartId')), id, cantidadValue);
       }
     });
   }

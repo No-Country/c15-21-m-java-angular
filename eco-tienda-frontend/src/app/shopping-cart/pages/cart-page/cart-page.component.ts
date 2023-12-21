@@ -14,8 +14,8 @@ export class CartPageComponent {
 
   private tiendaService = inject(EcoTiendaService);
   public productList: ProductsResponse[] = [];
-  public shoppingCart: any = [];
   public productsShoppingCart: Products[] = [];
+  public shoppingCart: any = { product: [] };
   public ShoppingCartId = Number(localStorage.getItem('cartId'));
 
 
@@ -119,7 +119,7 @@ export class CartPageComponent {
       if (result.isConfirmed) {
         let cantidad = document.getElementById("cantidad") as HTMLInputElement;
         let cantidadValue = parseInt(cantidad.value);
-        this.agregarAlShoppingCart(this.ShoppingCartId, id, cantidadValue);
+        this.agregarAlShoppingCart(Number(localStorage.getItem('cartId')), id, cantidadValue);
       }
     });
   }
