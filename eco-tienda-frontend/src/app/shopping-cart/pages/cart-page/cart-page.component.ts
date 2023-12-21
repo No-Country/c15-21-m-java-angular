@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Location } from '@angular/common';
 import { ProductsResponse } from 'src/app/interfaces/products.interface';
-import { Products, ShoppingCartIdResponse } from 'src/app/interfaces/shoping-cart.interface';
+import { Products, ShoppingCartIdResponse, ShoppingCartResponse } from 'src/app/interfaces/shoping-cart.interface';
 import { EcoTiendaService } from 'src/app/services/eco-tienda.service';
 import Swal from 'sweetalert2';
 
@@ -15,7 +15,7 @@ export class CartPageComponent {
   private tiendaService = inject(EcoTiendaService);
   public productList: ProductsResponse[] = [];
   public productsShoppingCart: Products[] = [];
-  public shoppingCart: any = [];
+  public shoppingCart: any = {products:[]};
   public ShoppingCartId = Number(localStorage.getItem('cartId'));
 
 
@@ -74,15 +74,17 @@ export class CartPageComponent {
         this.shoppingCart = shoppingCart;
         console.log(this.shoppingCart);
         Swal.fire("¡Producto agregado!", "", "success");
+        this.obtenerShoppingCartId(this.ShoppingCartId);
       }, error: (error) => {
         console.log(error);
         Swal.fire("¡No se pudo agregar el producto!", "", "error");
       }
     })
   }
-  eliminarProductoDelShoppingCart(cart: Number, product: Number) {
+  eliminarProductoDelShoppingCart(cart: Number, product: Number ,index : number) {
     this.tiendaService.deleteProductShoppingCart(cart, product).subscribe({
       error: () => {
+        this.productsShoppingCart.splice(index,1);
         Swal.fire("¡Producto eliminado!", "", "success");
       }
     })
