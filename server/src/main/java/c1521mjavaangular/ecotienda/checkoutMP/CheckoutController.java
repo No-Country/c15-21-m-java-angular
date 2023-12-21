@@ -63,7 +63,7 @@ public class CheckoutController {
 
             PreferenceRequest request = PreferenceRequest.builder().backUrls(backUrls).build();
 
-            return preference.getInitPoint();
+            return preference.getId();
         } catch (MPException | MPApiException e) {
             // Manejo de excepciones
             e.printStackTrace();
