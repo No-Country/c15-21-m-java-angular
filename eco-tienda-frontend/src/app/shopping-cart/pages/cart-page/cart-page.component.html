@@ -10,16 +10,19 @@
                 <div class="px-4 flex flex-col justify-around w-3/5">
                     <h2 class="text-2xl font-medium leading-tight lg:text-3xl">{{product.nombre}}</h2>
                     <div class="flex items-center w-full">
-                        <h3 class="text-2xl font-medium leading-tight lg:text-2xl">{{product.cantidad}} uds. x $ {{product.precio}}</h3>
+                        <h3 class="text-2xl font-medium leading-tight lg:text-2xl">{{product.cantidad}} uds. x $
+                            {{product.precio}}</h3>
                         <!-- <h3 class="text-2xl font-medium leading-tight lg:text-2xl">x $ {{product.precio}}</h3> -->
 
                     </div>
                 </div>
                 <div class="w-1/5 flex flex-col lg:flex-row  justify-evenly items-center">
 
-                    <h3 class="text-2xl font-medium leading-tight lg:text-3xl text-right">$ {{product.precio * product.cantidad}} </h3>
-                    
-                    <a href="" class="text-2xl text-red-600"><i class="fa-solid fa-trash"></i></a>
+                    <h3 class="text-2xl font-medium leading-tight lg:text-3xl text-right">$ {{product.precio *
+                        product.cantidad}} </h3>
+
+                    <a (click)="eliminarProductoDelShoppingCart(this.ShoppingCartId,product.id)"
+                        class="text-2xl text-red-600 cursor-pointer"><i class="fa-solid fa-trash"></i></a>
                 </div>
 
             </article>
@@ -39,7 +42,7 @@
                 </button>
 
 
-                <a (click)="backClicked()" class="text-et-turmeric w-full flex justify-center text-2xl">
+                <a (click)="backClicked()" class="text-et-turmeric w-full flex justify-center text-2xl cursor-pointer">
                     <span relative="relative z-10">← Seguir comprando</span>
                 </a>
             </article>
@@ -49,7 +52,8 @@
 
                 <h2>Destacados</h2>
                 <div class="flex flex-wrap">
-                    <div *ngFor="let product of productList | slice : 0 : 4 " class="w-1/2 p-2 rounded shadow-md flex flex-col justify-between">
+                    <div *ngFor="let product of productList | slice : 0 : 4 "
+                        class="w-1/2 p-2 rounded shadow-md flex flex-col justify-between">
                         <h2>{{product.nombre}}</h2>
                         <div class="flex justify-between items-center">
                             <img src="{{product.imagen}}" alt="" class="w-1/3">

@@ -55,7 +55,7 @@ export class CartPageComponent {
       }
     })
   }
-  
+
 
   crearShoppingCart(email: String) {
     this.tiendaService.createShoppingCart(email).subscribe({
@@ -77,6 +77,13 @@ export class CartPageComponent {
       }, error: (error) => {
         console.log(error);
         Swal.fire("¡No se pudo agregar el producto!", "", "error");
+      }
+    })
+  }
+  eliminarProductoDelShoppingCart(cart: Number, product: Number) {
+    this.tiendaService.deleteProductShoppingCart(cart, product).subscribe({
+      error: () => {
+        Swal.fire("¡Producto eliminado!", "", "success");
       }
     })
   }

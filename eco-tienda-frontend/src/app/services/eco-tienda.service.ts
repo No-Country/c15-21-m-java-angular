@@ -54,6 +54,6 @@ export class EcoTiendaService {
     return this.http.get<ShoppingCartResponse[]>(`${this.url}/api/cart/admin/carts`);
   }
   deleteProductShoppingCart(cartId: Number,productId: Number): Observable<any> {
-    return this.http.delete(`${this.url}/api/cart/public/carts/${cartId}/product/${productId}`);
+    return this.http.delete<any>(`${this.url}/api/cart/public/carts/${cartId}/product/${productId}`);
   }
 }
