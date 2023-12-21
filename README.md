@@ -9,6 +9,17 @@ Este proyecto consiste en el desarrollo de una tienda en línea especializada en
 
 Este sistema de comercio electrónico tiene como objetivo crear una plataforma intuitiva y segura para la compra de productos naturales. Se aborda tanto la navegación para usuarios registrados como la navegación anónima, ofreciendo una experiencia completa para todos los usuarios.
 
+<p align="center">
+<a href="https://c15-21-m-java-angular-ten.vercel.app/eco-tienda/home">
+<img src="https://camo.githubusercontent.com/7f2ed934781457df02651c4f9175f6f04ee59a22baa3857c22b965eb431f56d7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5645525f44454d4f2d3333373846463f7374796c653d666f722d7468652d6261646765266c6f676f3d76657263656c266c6f676f436f6c6f723d253233333433423445">
+</a>
+<a href="https://c15-21-m-java-angular-production.up.railway.app/swagger-ui/index.html#">
+<img src="https://camo.githubusercontent.com/048a48fb295539499631620c895f5f9d128507ba3b53035cef4b379497390543/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5645525f4150492d3333373846463f7374796c653d666f722d7468652d6261646765266c6f676f3d73776167676572266c6f676f436f6c6f723d253233333433423445">
+</a>
+<a href="https://www.figma.com/file/0soYDr0A588epwPTbj09ap/EcoTienda?type=design&node-id=0%3A1&mode=design&t=LNTZL0t3vmT2OO4v-1">
+<img src="https://camo.githubusercontent.com/ce062890aafa742c1bb671b2fd53e9dcf5f30923b84fb066b1e89e98e0f263fc/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5645525f444953452543332539314f2d3333373846463f7374796c653d666f722d7468652d6261646765266c6f676f3d6669676d61266c6f676f436f6c6f723d253233333433423445">
+</a>
+</p>
 
 ## Features
 
@@ -46,7 +57,7 @@ Este sistema de comercio electrónico tiene como objetivo crear una plataforma i
 | Indira Davoin | Frontend | [@HicoTico](https://www.github.com/hicotico) |
 | David Reyes | Frontend | [@Davidirs](https://www.github.com/davidirs) |
 | Alexis Oroya | Frontend | [@Alexiz0r0](https://www.github.com/alexiz0r0) |
-| Ruth Sánchez Guilarte | Frontend | [@Ruth1196](https://www.github.com/ruth1196) |
-| Liliana Muñoz Duque | Frontend | [@Liliana331](https://www.github.com/liliana331) |
+| Ruth Sánchez Guilarte | QA | [@Ruth1196](https://www.github.com/ruth1196) |
+| Liliana Muñoz Duque | QA | [@Liliana331](https://www.github.com/liliana331) |
 
 
