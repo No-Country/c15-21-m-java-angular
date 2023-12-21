@@ -48,11 +48,3 @@ export class HomePageComponent implements OnInit {
     return categoria.id !== 7;
   }
 }
-
-
-
-
-  // Método para filtrar categorías
-  // filterCategories(): CategoriesResponse[] {
-  //   return this.categoryList.filter((categoria) => this.debeMostrarse(categoria));
-  // }

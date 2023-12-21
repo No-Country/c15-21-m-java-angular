@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Error404PageComponent } from './shared/pages/error404-page/error404-page.component';
+import { SearchResultsComponent } from './eco-tienda/pages/search-results/search-results.component';
 import { isAuthenticatedGuard } from './guards/is-authenticated.guard';
 import { alreadyLoggedGuard } from './guards/already-logged.guard';
 

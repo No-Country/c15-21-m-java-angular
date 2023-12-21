@@ -9,6 +9,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 
 import { CategoryPageComponent } from './pages/category-page/category-page.component';
 import { FeaturedPageComponent } from './pages/featured-page/featured-page.component';
+import { SearchResultsComponent } from './pages/search-results/search-results.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'list', component: ListPageComponent },
       { path: 'category', component: CategoryPageComponent },
       { path: 'destacado', component: FeaturedPageComponent },
+      { path: 'search-results', component: SearchResultsComponent },
       { path: '**', redirectTo: 'home' },
     ],
   },

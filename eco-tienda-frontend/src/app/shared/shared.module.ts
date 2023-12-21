@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Error404PageComponent } from './pages/error404-page/error404-page.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-
+import { SearchResultsComponent } from '../eco-tienda/pages/search-results/search-results.component';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { RouterModule } from '@angular/router';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -15,6 +15,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     FooterComponent,
     SearchBoxComponent,
     LoaderComponent,
+    SearchResultsComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -22,6 +23,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     FooterComponent,
     SearchBoxComponent,
     LoaderComponent,
+    SearchResultsComponent,
   ],
 })
 export class SharedModule {}

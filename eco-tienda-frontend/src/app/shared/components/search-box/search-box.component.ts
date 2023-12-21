@@ -1,5 +1,8 @@
-import { Component, ElementRef, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { environments } from 'src/environments/environments';
+import { SearchService } from 'src/app/services/search.service';
+import { EcoTiendaService } from 'src/app/services/eco-tienda.service';
 
 @Component({
   selector: 'shared-search-box',
@@ -7,14 +10,42 @@ import { Router } from '@angular/router';
   styleUrls: ['./search-box.component.css'],
 })
 export class SearchBoxComponent {
-  @ViewChild('txtTagInput')
-  public tagInput?: ElementRef<HTMLInputElement>;
+  @ViewChild('txtTagInput') tagInput?: ElementRef<HTMLInputElement>;
+  private url: string = environments.baseUrl;
+  results : any;
 
-  private router = inject(Router);
+  constructor(
+    private ecoTiendaService: EcoTiendaService,
+    private searchService: SearchService,
+    private router: Router
+  ) {}
 
   searchTag() {
     const newTag = this.tagInput?.nativeElement.value;
-    console.log(newTag);
-    this.router.navigateByUrl('/eco-tienda/list');
+
+    if (newTag) {
+      // Utiliza directamente la URL base desde el servicio EcoTiendaService
+      const url = `${this.url}/buscar/productos?palabraClave=${newTag}`;
+      console.log('URL de búsqueda:', url);
+
+      this.ecoTiendaService.searchProductByBox(newTag).subscribe(
+        (response) => {
+          console.log('Resultados de la búsqueda:', response);
+          this.renderResults(response); // Llama a renderResults con los resultados
+        },
+        (error) => {
+          console.error('Error al realizar la búsqueda:', error);
+        }
+      );
+    }
+    
+    
+  }
+
+  private renderResults(results: any): void {
+    this.results = results;
+    this.router.navigateByUrl('eco-tienda/search-results');
+    this.searchService.updateSearchResults(results);
   }
 }
+
