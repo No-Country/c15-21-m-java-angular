@@ -1,9 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ValidatorsService } from '../../../services/validators.service';
+import { ShoppingCartIdResponse } from 'src/app/interfaces/shoping-cart.interface';
+import { EcoTiendaService } from 'src/app/services/eco-tienda.service';
 
 @Component({
   selector: 'app-register-page',
@@ -16,6 +18,8 @@ export class RegisterPageComponent {
   private validatorsService = inject(ValidatorsService);
   private toastr = inject(ToastrService);
   private router = inject(Router);
+  private tiendaService = inject(EcoTiendaService);
+  public shoppingCart: ShoppingCartIdResponse[] = [];
 
   public registerForm: FormGroup = this.fb.group(
     {
@@ -60,6 +64,7 @@ export class RegisterPageComponent {
 
     this.authService.register(fullName, email, password).subscribe({
       next: () => {
+        this.crearShoppingCart(email);
         this.toastr.success(
           `Tu cuenta ha sido creada con éxito.`,
           '¡Bienvenido!',
@@ -75,4 +80,18 @@ export class RegisterPageComponent {
       },
     });
   }
+ 
+
+  crearShoppingCart(email: String){
+    this.tiendaService.createShoppingCart(email).subscribe({
+      next: (shoppingCart) => {
+      
+        this.shoppingCart = shoppingCart
+        console.log(this.shoppingCart)
+      }
+    })
+  }
+  
+  
+  
 }

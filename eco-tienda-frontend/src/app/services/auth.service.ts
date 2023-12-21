@@ -4,6 +4,7 @@ import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
 import { AuthStatus } from '../interfaces/auth-status.enum';
 import { LoginResponse } from '../interfaces/login.interface';
 import { environments } from 'src/environments/environments';
+import { EcoTiendaService } from './eco-tienda.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,12 @@ export class AuthService {
 
   public authStatus = computed(() => this._authStatus());
 
+  private tiendaService = inject(EcoTiendaService);
+
+  public shoppingCart: any = [];
+
+  public ShoppingCartId: number = 0;
+
   constructor() {
     this.checkAuthStatus().subscribe();
   }
@@ -29,6 +36,8 @@ export class AuthService {
       tap(({ token }) => {
         this._authStatus.set(AuthStatus.authenticated);
         localStorage.setItem('token', token);
+        localStorage.setItem('email', email);
+        this.obtenerShoppingCartByEMail(email);
       }),
       map(() => true),
       catchError((err) => {
@@ -50,6 +59,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    localStorage.removeItem('cartId');
     this._authStatus.set(AuthStatus.notAuthenticated);
   }
 
@@ -69,5 +80,17 @@ export class AuthService {
         return throwError(() => 'Sus credenciales no son válidas');
       })
     );
+  }
+
+  obtenerShoppingCartByEMail(email: String) {
+    this.tiendaService.getShoppingCartByEmail(email).subscribe({
+      next: (shoppingCart) => {
+        this.shoppingCart = shoppingCart;
+        console.log(this.shoppingCart)
+        this.ShoppingCartId = shoppingCart.cartId;
+        console.log(this.ShoppingCartId)
+        localStorage.setItem('cartId', String(this.ShoppingCartId));
+      }
+    })
   }
 }
