@@ -43,7 +43,7 @@ Este sistema de comercio electrónico tiene como objetivo crear una plataforma i
 
 ## Tech Stack
 
-**Client:** Angular, Javascript
+**Client:** Angular, TypeScript, Tailwind CSS
 
 **Server:** Java, Springboot, MySql
 
