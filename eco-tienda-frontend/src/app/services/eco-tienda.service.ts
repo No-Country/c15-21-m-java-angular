@@ -2,18 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environments } from '../../environments/environments';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { SearchService } from './search.service';
 import { ProductsResponse } from '../interfaces/products.interface';
 import { CategoriesResponse } from '../interfaces/categories.interface';
 import { ShoppingCartResponse ,ShoppingCartIdResponse } from '../interfaces/shoping-cart.interface';
 import { DetailResponse } from '../interfaces/detail.interface';
+import { ResultsResponse } from '../interfaces/results.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EcoTiendaService {
   private url: string = environments.baseUrl;
-
+  private searchService = inject(SearchService);
   private http = inject(HttpClient);
+  
 
   getProducts(): Observable<ProductsResponse[]> {
     return this.http.get<ProductsResponse[]>(
@@ -30,6 +34,14 @@ export class EcoTiendaService {
     );
   }
 
+  // searchBox
+  searchProductByBox(keyword: string): Observable<ResultsResponse[]> {
+    const url = `${this.url}/buscar/productos?palabraClave=${keyword}`;
+    return this.http.get<ResultsResponse[]>(url).pipe(
+      tap((results) => this.searchService.updateSearchResults(results))
+    );
+  }
+  
   //*********CARRITO *****************
   editProductShoppingCart(cartId: Number,productId: Number,quantity: Number): Observable<any> {
     return this.http.put(`${this.url}/api/cart/public/carts/${cartId}/products/${productId}/quantity/${quantity}`,{cartId: cartId, productId: productId, quantity: Number});

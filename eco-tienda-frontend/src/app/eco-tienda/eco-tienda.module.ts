@@ -9,6 +9,7 @@ import { DetailPageComponent } from './pages/detail-page/detail-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { FeaturedPageComponent } from './pages/featured-page/featured-page.component';
+import { SearchResultsComponent } from './pages/search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FeaturedPageComponent } from './pages/featured-page/featured-page.compo
     DetailPageComponent,
     HomePageComponent,
     FeaturedPageComponent,
+    SearchResultsComponent,
   ],
   imports: [CommonModule, EcoTiendaRoutingModule, SharedModule],
 })

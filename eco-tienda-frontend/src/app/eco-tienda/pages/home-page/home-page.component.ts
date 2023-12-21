@@ -91,4 +91,9 @@ export class HomePageComponent implements OnInit {
       }
     });
   }
+  // Función para determinar si una categoría debe mostrarse
+  debeMostrarse(categoria: CategoriesResponse): boolean {
+    // Devuelve true solo si el ID de la categoría NO es igual a 7 
+    return categoria.id !== 7;
+  }
 }
