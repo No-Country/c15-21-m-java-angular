@@ -46,6 +46,10 @@ export class EcoTiendaService {
   getShoppingCartId(id: Number): Observable<ShoppingCartIdResponse[]> {
     return this.http.get<ShoppingCartIdResponse[]>(`${this.url}/api/cart/public/carts/${id}`);
   }
+  getShoppingCartByEmail(email: String): Observable<any> {
+    return this.http.get<any>(`${this.url}/api/cart/public/carts/email/${email}`);
+    //https://c15-21-m-java-angular-production.up.railway.app/api/cart/public/carts/email/david1@david.com
+  }
   getShoppingCarts(): Observable<ShoppingCartResponse[]> {
     return this.http.get<ShoppingCartResponse[]>(`${this.url}/api/cart/admin/carts`);
   }
