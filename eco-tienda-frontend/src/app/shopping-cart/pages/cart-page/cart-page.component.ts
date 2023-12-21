@@ -15,8 +15,10 @@ export class CartPageComponent {
   private tiendaService = inject(EcoTiendaService);
   public productList: ProductsResponse[] = [];
   public productsShoppingCart: Products[] = [];
-  public shoppingCart: any = {products:[]};
+  public shoppingCart: any = { products: [] };
   public ShoppingCartId = Number(localStorage.getItem('cartId'));
+  public isLoadingProducts: boolean = false;
+  public isLoadingCart: boolean = false;
 
 
   constructor(private _location: Location) { }
@@ -36,21 +38,25 @@ export class CartPageComponent {
   }
 
   obtenerProductsList() {
+    this.isLoadingProducts = true;
     this.tiendaService.getProducts().subscribe({
       next: (products) => {
-        this.productList = products;
-        console.log(this.productList)
+        this.productList = products; 
+        this.isLoadingProducts = false;
+
       }
     })
   }
 
   obtenerShoppingCartId(id: Number) {
+    this.isLoadingCart = true;
+
     this.tiendaService.getShoppingCartId(id).subscribe({
       next: (shoppingCart) => {
         this.shoppingCart = shoppingCart;
         this.productsShoppingCart = this.shoppingCart.products;
-        console.log(this.shoppingCart)
-        console.log(this.productsShoppingCart)
+        this.isLoadingCart = false;
+
 
       }
     })
@@ -81,10 +87,10 @@ export class CartPageComponent {
       }
     })
   }
-  eliminarProductoDelShoppingCart(cart: Number, product: Number ,index : number) {
+  eliminarProductoDelShoppingCart(cart: Number, product: Number, index: number) {
     this.tiendaService.deleteProductShoppingCart(cart, product).subscribe({
       error: () => {
-        this.productsShoppingCart.splice(index,1);
+        this.productsShoppingCart.splice(index, 1);
         Swal.fire("¡Producto eliminado!", "", "success");
       }
     })
