@@ -41,11 +41,20 @@ Este sistema de comercio electrónico tiene como objetivo crear una plataforma i
 
 
 
-## Tech Stack
+## Tecnologías usadas
 
-**Client:** Angular, TypeScript, Tailwind CSS
+### Frontend: 
 
-**Server:** Java, Springboot, MySql
+<img src="https://api.iconify.design/logos:angular.svg" width=90px> <img src="https://api.iconify.design/logos:typescript-icon.svg" width=30px> <img src="https://api.iconify.design/logos:tailwindcss.svg" width=130px>
+
+### Backend:
+
+<img src="https://api.iconify.design/devicon:java-wordmark.svg" width=60px><img src="https://api.iconify.design/logos:spring.svg" width=100px>  <img src="https://api.iconify.design/logos:mysql.svg" width=80px> <img src="https://api.iconify.design/devicon:hibernate-wordmark.svg" width=50px>
+
+### QA:
+
+<img src="https://api.iconify.design/logos:postman.svg" width=100px> <img src="https://api.iconify.design/logos:swagger.svg" width=40px>
+
 
 ## Equipo C15-21-m-java-angular
 
