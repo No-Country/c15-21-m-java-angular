@@ -5,7 +5,9 @@
     <div class="flex flex-col md:flex-row justify-between space-y-4 md:space-x-4">
 
         <section id="product-list" class="space-y-4 w-full md:w-3/5">
-            <article class="bg-white p-3 flex rounded-lg shadow-md" *ngFor="let product of productsShoppingCart">
+            <shared-loader *ngIf="isLoadingCart"></shared-loader>
+            <article class="bg-white p-3 flex rounded-lg shadow-md"
+                *ngFor="let product of productsShoppingCart ; index as i">
                 <img [src]="product.imagen" alt="" class="w-1/5">
                 <div class="px-4 flex flex-col justify-around w-3/5">
                     <h2 class="text-2xl font-medium leading-tight lg:text-3xl">{{product.nombre}}</h2>
@@ -21,7 +23,7 @@
                     <h3 class="text-2xl font-medium leading-tight lg:text-3xl text-right">$ {{product.precio *
                         product.cantidad}} </h3>
 
-                    <a (click)="eliminarProductoDelShoppingCart(this.ShoppingCartId,product.id)"
+                    <a (click)="eliminarProductoDelShoppingCart(this.ShoppingCartId,product.id, i)"
                         class="text-2xl text-red-600 cursor-pointer"><i class="fa-solid fa-trash"></i></a>
                 </div>
 
@@ -55,6 +57,8 @@
             <article>
 
                 <h2>Destacados</h2>
+
+                <shared-loader *ngIf="isLoadingProducts"></shared-loader>
                 <div class="flex flex-wrap">
                     <div *ngFor="let product of productList | slice : 0 : 4 "
                         class="w-1/2 p-2 rounded shadow-md flex flex-col justify-between">
