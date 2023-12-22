@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { ProductsResponse } from 'src/app/interfaces/products.interface';
 import { Products } from 'src/app/interfaces/shoping-cart.interface';
 import { EcoTiendaService } from 'src/app/services/eco-tienda.service';
-import { loadMercadoPago } from "@mercadopago/sdk-js";
 
 
  
@@ -45,14 +44,6 @@ export class CheckoutComponent {
       }
     })
   }
-
-  /****************************** Mercado Pago *******************************/
-/* 
- const mp = new MercadoPago('APP_USR-132d9d07-1a00-419f-95da-5d6473e181c8'); */
-
-
- /* const mp = new MercadoPago('***************');
- const bricksBuilder = mp.bricks(); */
 
 
 }
