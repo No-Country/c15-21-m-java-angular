@@ -21,6 +21,8 @@ export class LoginPageComponent {
   private toastr = inject(ToastrService);
 
   private router = inject(Router);
+  public showPassword: boolean = false;
+  public type: string = "password";
 
   public loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -51,4 +53,10 @@ export class LoginPageComponent {
       },
     });
   }
+
+  PasswordToggle(){
+    this.showPassword = !this.showPassword;
+    this.type = this.type == "password" ? "text" : "password";
+  }
+  
 }

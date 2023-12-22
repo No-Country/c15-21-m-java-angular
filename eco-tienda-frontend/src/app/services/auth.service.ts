@@ -62,6 +62,7 @@ export class AuthService {
     localStorage.removeItem('email');
     localStorage.removeItem('cartId');
     this._authStatus.set(AuthStatus.notAuthenticated);
+    
   }
 
   register(name: string, email: string, password: string): Observable<boolean> {

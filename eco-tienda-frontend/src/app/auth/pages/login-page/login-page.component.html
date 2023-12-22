@@ -39,12 +39,15 @@
         </div>
         <input
           formControlName="password"
-          class="w-full p-3"
-          type="password"
+          class="w-full p-3" 
+          type="{{type}}"
           name="email"
           placeholder="Contraseña"
         />
-        <a class="p-3"><i class="fa fa-eye"></i></a>
+        <a class="p-3" (click)="PasswordToggle()">
+          <i *ngIf="showPassword" class="fa-regular fa-eye"></i>
+          <i *ngIf="!showPassword" class="fa-regular fa-eye-slash"></i>
+        </a>
       </div>
       <span
         *ngIf="isValidField('password')"
@@ -63,7 +66,7 @@
         </div>
         <button type="submit" class="et-p-btn">Iniciar sesión</button>
       </div>
-      <div class="flex p-3 justify-between text-et-turmeric font-bold">
+      <div class="flex flex-col lg:flex-row p-3 justify-between text-et-turmeric font-bold">
         <a>¿Olvidó su contraseña?</a>
         <a routerLink="/auth/new-account">Regístrate ahora</a>
       </div>

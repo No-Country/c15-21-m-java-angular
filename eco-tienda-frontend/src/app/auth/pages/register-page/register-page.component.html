@@ -34,7 +34,7 @@
         <div
           class="rounded border-gray-300 border border-solid h-full w-10 flex items-center justify-center p-4"
         >
-          <i class="fa fa-user"></i>
+        <i class="fa-solid fa-envelope"></i>
         </div>
         <input
           class="w-full p-3"
@@ -60,12 +60,15 @@
         </div>
         <input
           class="w-full p-3"
-          type="password"
+          type="{{type}}"
           name="email"
           placeholder="Constraseña"
           formControlName="password"
         />
-        <a class="p-3"><i class="fa fa-eye"></i></a>
+        <a class="p-3" (click)="PasswordToggle()">
+          <i *ngIf="showPassword" class="fa-solid fa-eye"></i>
+          <i *ngIf="!showPassword" class="fa-solid fa-eye-slash"></i>
+        </a>
       </div>
       <span
         *ngIf="isValidField('password')"
@@ -83,12 +86,15 @@
         </div>
         <input
           class="w-full p-3"
-          type="password"
+          type="{{type}}"
           name="email"
           placeholder="Repetir Constraseña"
           formControlName="password2"
         />
-        <a class="p-3"><i class="fa fa-eye"></i></a>
+        <a class="p-3" (click)="PasswordToggle()">
+          <i *ngIf="showPassword" class="fa-solid fa-eye"></i>
+          <i *ngIf="!showPassword" class="fa-solid fa-eye-slash"></i>
+        </a>
       </div>
       <span
         *ngIf="isValidField('password2')"

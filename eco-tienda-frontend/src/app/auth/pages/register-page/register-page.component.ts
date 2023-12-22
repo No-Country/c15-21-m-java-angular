@@ -21,6 +21,10 @@ export class RegisterPageComponent {
   private tiendaService = inject(EcoTiendaService);
   public shoppingCart: ShoppingCartIdResponse[] = [];
 
+  
+  public showPassword: boolean = false;
+  public type: string = "password";
+
   public registerForm: FormGroup = this.fb.group(
     {
       fullName: [
@@ -92,6 +96,9 @@ export class RegisterPageComponent {
     })
   }
   
-  
+  PasswordToggle(){
+    this.showPassword = !this.showPassword;
+    this.type = this.type == "password" ? "text" : "password";
+  }
   
 }
