@@ -1,13 +1,15 @@
 <header class="w-full text-gray-700 bg-et-citrine-white">
   <!-- Logo -->
-  <div class="container flex flex-col items-center mx-auto py-2">
-    <a routerLink="/eco-tienda/home">
+  <div class="container flex justify-between items-center mx-auto py-2">
+    <a routerLink="/eco-tienda/home" class="tracking-wide cursor-pointer px-3 py-2 transition hover:text-et-mule-fawn hover:scale-125"> Inicio</a>
+    <a>
       <img
-        src="../../../../assets/p_Logo.png"
+      src="../../../../assets/p_Logo.png"
         alt=""
         class="z-50 w-40 object-cover scale-75 md:scale-100"
-      />
-    </a>
+        />
+      </a>
+      <a routerLink="/eco-tienda/conocenos" class="tracking-wide cursor-pointer px-3 py-2 transition hover:text-et-mule-fawn hover:scale-125">Conócenos</a>
   </div>
 </header>
 <router-outlet></router-outlet>

@@ -14,7 +14,7 @@ export class AuthService {
 
   private http = inject(HttpClient);
 
-  private _authStatus = signal<AuthStatus>(AuthStatus.checking);
+  private _authStatus = signal<AuthStatus>(AuthStatus.authenticated);
 
   public authStatus = computed(() => this._authStatus());
 
@@ -62,6 +62,7 @@ export class AuthService {
     localStorage.removeItem('email');
     localStorage.removeItem('cartId');
     this._authStatus.set(AuthStatus.notAuthenticated);
+    
   }
 
   register(name: string, email: string, password: string): Observable<boolean> {

@@ -6,7 +6,7 @@ import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { DetailPageComponent } from './pages/detail-page/detail-page.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-
+import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { CategoryPageComponent } from './pages/category-page/category-page.component';
 import { FeaturedPageComponent } from './pages/featured-page/featured-page.component';
 import { TermsConditionsPageComponent } from './pages/terms-conditions/terms-conditions-page.component';
@@ -30,6 +30,7 @@ const routes: Routes = [
       { path: 'politicas-de-privacidad', component:  PrivacyPoliticsPageComponent},
       { path: 'devoluciones-y-reembolsos', component:  ReturnsRefundsPageComponent},
       { path: 'envíos-y-despacho', component:  ShippingDispatchPageComponent},
+      { path: 'search-results', component: SearchResultsComponent },
       { path: '**', redirectTo: 'home' },
     ],
   },
