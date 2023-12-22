@@ -28,7 +28,6 @@ export class CheckoutComponent {
     this.obtenerShoppingCartId(this.ShoppingCartId); //funcionando
     //this.agregarAlShoppingCart(6,5,1); //funcionando
     //this.obtenerShoppingCarts()
-    
 
   }
   obtenerShoppingCartId(id: number){
