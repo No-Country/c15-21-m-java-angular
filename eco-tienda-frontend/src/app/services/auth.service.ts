@@ -14,7 +14,7 @@ export class AuthService {
 
   private http = inject(HttpClient);
 
-  private _authStatus = signal<AuthStatus>(AuthStatus.checking);
+  private _authStatus = signal<AuthStatus>(AuthStatus.authenticated);
 
   public authStatus = computed(() => this._authStatus());
 

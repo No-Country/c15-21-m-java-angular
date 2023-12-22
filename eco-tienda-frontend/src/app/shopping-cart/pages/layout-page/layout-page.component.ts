@@ -12,19 +12,19 @@ export class LayoutPageComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  public finishedAuthCheck = computed<boolean>(() => {
+ /*  public finishedAuthCheck = computed<boolean>(() => {
     if (this.authService.authStatus() === AuthStatus.checking) {
       return false;
     }
     return true;
-  });
+  }); */
 
   public authStatusChanged = effect(() => {
     console.log(this.authService.authStatus());
 
     switch (this.authService.authStatus()) {
-      case AuthStatus.checking:
-        break;
+      /* case AuthStatus.checking:
+        break; */
       case AuthStatus.authenticated:
         this.router.navigateByUrl('/shopping-cart');
         break;
