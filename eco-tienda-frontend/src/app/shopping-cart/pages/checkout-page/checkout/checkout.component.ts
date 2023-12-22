@@ -4,6 +4,7 @@ import { Products } from 'src/app/interfaces/shoping-cart.interface';
 import { EcoTiendaService } from 'src/app/services/eco-tienda.service';
 import { loadMercadoPago } from "@mercadopago/sdk-js";
 
+
  
 
 @Component({
@@ -13,22 +14,24 @@ import { loadMercadoPago } from "@mercadopago/sdk-js";
 })
 export class CheckoutComponent {
 
-  ngOnInit(): void {
-   
-    //this.crearShoppingCart("david@david.com"); //Funcionando
-    this.obtenerShoppingCartId(6); //funcionando
-    //this.agregarAlShoppingCart(6,5,1); //funcionando
-    //this.obtenerShoppingCarts()
-    
-
-  }
 
   private tiendaService = inject(EcoTiendaService);
   public productList: ProductsResponse[] = [];
   public shoppingCart: any= [];
   public productsShoppingCart: Products[] = [];
+  
+  public ShoppingCartId = Number(localStorage.getItem('cartId'));
   public isLoadingCart: boolean = false;
 
+  ngOnInit(): void {
+   
+    //this.crearShoppingCart("david@david.com"); //Funcionando
+    this.obtenerShoppingCartId(this.ShoppingCartId); //funcionando
+    //this.agregarAlShoppingCart(6,5,1); //funcionando
+    //this.obtenerShoppingCarts()
+    
+
+  }
   obtenerShoppingCartId(id: number){
     this.isLoadingCart = true;
 
