@@ -58,15 +58,15 @@ Este sistema de comercio electrónico tiene como objetivo crear una plataforma i
 
 ## Equipo C15-21-m-java-angular
 
-| Nombre       | Rol        |Github                                                |
-| ------------ | -----------|----------------------------------------------------- |
-| Nestor Duque | Backend | [@NestorDuque](https://www.github.com/nestorduqueduque)
-| Ivan De La Fuente | Backend | [@Ivandlf](https://www.github.com/ivandlf)|
-| Ramiro Ormachea | Backend | [@RamaOrmachea](https://www.github.com/ramaormachea) |
-| Indira Davoin | Frontend | [@HicoTico](https://www.github.com/hicotico) |
-| David Reyes | Frontend | [@Davidirs](https://www.github.com/davidirs) |
-| Alexis Oroya | Frontend | [@Alexiz0r0](https://www.github.com/alexiz0r0) |
-| Ruth Sánchez Guilarte | QA | [@Ruth1196](https://www.github.com/ruth1196) |
-| Liliana Muñoz Duque | QA | [@Liliana331](https://www.github.com/liliana331) |
+| Nombre       | Rol        |Github                                                |Linkedin
+| ------------ | -----------|----------------------------------------------------- |--------|
+| Nestor Duque | Backend | [@NestorDuque](https://www.github.com/nestorduqueduque)|[Nestor Duque](https://www.linkedin.com/in/nestorduqueduque)
+| Ivan De La Fuente | Backend | [@Ivandlf](https://www.github.com/ivandlf)| [Ivan De La Fuente](https://www.linkedin.com/in/ivandlf)|
+| Ramiro Ormachea | Backend | [@RamaOrmachea](https://www.github.com/ramaormachea) | [Ramiro Ormachea](https://www.linkedin.com/in/ramiroormachea)
+| Indira Davoin | Frontend | [@HicoTico](https://www.github.com/hicotico) |[Indira Davoin](http://www.linkedin.com/in/indirafabianadavoinluna)
+| David Reyes | Frontend | [@Davidirs](https://www.github.com/davidirs) | [David Reyes](https://www.linkedin.com/in/davidirs/)|
+| Alexis Oroya | Frontend | [@Alexiz0r0](https://www.github.com/alexiz0r0) | [Alexis Oroya](https://www.linkedin.com/in/jaobisgreat/)|
+| Ruth Sánchez Guilarte | QA | [@Ruth1196](https://www.github.com/ruth1196) | [Ruth Sanchez](https://www.linkedin.com/in/ruth-sanchez-7b0080128/)|
+| Liliana Muñoz Duque | QA | [@Liliana331](https://www.github.com/liliana331) | [Liliana Muñoz](https://www.linkedin.com/in/liliana-mu%C3%B1oz-6abb63205/)|
 
 
