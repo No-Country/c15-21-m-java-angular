@@ -14,9 +14,9 @@ export class FeaturedPageComponent implements OnInit {
 
   public isLoading: boolean = false;
 
-  
+
   public shoppingCart: any = [];
-  
+
 
   ngOnInit(): void {
     this.obtenerProductsList();
