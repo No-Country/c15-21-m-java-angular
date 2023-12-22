@@ -89,8 +89,10 @@ export class CartPageComponent {
   }
   eliminarProductoDelShoppingCart(cart: Number, product: Number, index: number) {
     this.tiendaService.deleteProductShoppingCart(cart, product).subscribe({
-      error: () => {
-        this.productsShoppingCart.splice(index, 1);
+      error: () => {/* 
+        this.productsShoppingCart.splice(index, 1); */
+        
+        this.obtenerShoppingCartId(this.ShoppingCartId);
         Swal.fire("¡Producto eliminado!", "", "success");
       }
     })
