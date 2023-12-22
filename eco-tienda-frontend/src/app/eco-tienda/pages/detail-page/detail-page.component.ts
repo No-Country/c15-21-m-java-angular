@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EcoTiendaService } from '../../../services/eco-tienda.service';
 import { switchMap } from 'rxjs';
-import { DetailResponse } from '../../../interfaces/detail.interface';
+import { DetailResponse, Rating } from '../../../interfaces/detail.interface';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,10 +21,12 @@ export class DetailPageComponent implements OnInit {
 
   public isLoading: boolean = false;
 
-  
+  public testimonialList?: Rating[];
+
   public shoppingCart: any = [];
-  
+
   private tiendaService = inject(EcoTiendaService);
+
   ngOnInit(): void {
     this.getProductDetail();
   }
@@ -38,6 +40,7 @@ export class DetailPageComponent implements OnInit {
       .subscribe({
         next: (product) => {
           this.product = product;
+          this.testimonialList = product.ratings;
           this.isLoading = false;
           console.log(product);
         },
@@ -52,12 +55,13 @@ export class DetailPageComponent implements OnInit {
       next: (shoppingCart) => {
         this.shoppingCart = shoppingCart;
         console.log(this.shoppingCart);
-        Swal.fire("¡Producto agregado!", "", "success");
-      }, error: (error) => {
+        Swal.fire('¡Producto agregado!', '', 'success');
+      },
+      error: (error) => {
         console.log(error);
-        Swal.fire("¡No se pudo agregar el producto!", "", "error");
-      }
-    })
+        Swal.fire('¡No se pudo agregar el producto!', '', 'error');
+      },
+    });
   }
 
   showModal(id: Number) {
@@ -65,24 +69,28 @@ export class DetailPageComponent implements OnInit {
       title: `Agregar
       <input id="cantidad" type="number" value="1" style="text-align:center">
       Productos`,
-      icon: "info",
+      icon: 'info',
       showCloseButton: true,
       showCancelButton: true,
       focusConfirm: false,
       confirmButtonText: `
       <i class="fa-solid fa-cart-plus"></i> Añadir al carrito
       `,
-      confirmButtonAriaLabel: "Thumbs up, great!",
+      confirmButtonAriaLabel: 'Thumbs up, great!',
       cancelButtonText: `
         <i class="fa-solid fa-x"></i> Cancelar
       `,
-      cancelButtonAriaLabel: "Thumbs down"
+      cancelButtonAriaLabel: 'Thumbs down',
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        let cantidad = document.getElementById("cantidad") as HTMLInputElement;
+        let cantidad = document.getElementById('cantidad') as HTMLInputElement;
         let cantidadValue = parseInt(cantidad.value);
-        this.agregarAlShoppingCart(Number(localStorage.getItem('cartId')), id, cantidadValue);
+        this.agregarAlShoppingCart(
+          Number(localStorage.getItem('cartId')),
+          id,
+          cantidadValue
+        );
       }
     });
   }
