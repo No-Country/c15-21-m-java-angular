@@ -3,6 +3,7 @@ import { EcoTiendaService } from 'src/app/services/eco-tienda.service';
 import { ProductsResponse } from '../../../interfaces/products.interface';
 import { CategoriesResponse } from 'src/app/interfaces/categories.interface';
 import Swal from 'sweetalert2';
+import { Products } from 'src/app/interfaces/shoping-cart.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -18,12 +19,17 @@ export class HomePageComponent implements OnInit {
   public isLoadingCategories: boolean = false;
   public isLoadingProducts: boolean = false;
 
-  
-  public shoppingCart: any = [];
+
+
+  public productsShoppingCart: Products[] = [];
+  public shoppingCart: any = { products: [] };
+  public ShoppingCartId = Number(localStorage.getItem('cartId'));
+  public isLoadingCart: boolean = false;
 
   ngOnInit(): void {
     this.obtenerProductsList();
     this.obtenerCategoriesList();
+    this.obtenerShoppingCartId(this.ShoppingCartId)
   }
 
   obtenerProductsList() {
@@ -32,6 +38,7 @@ export class HomePageComponent implements OnInit {
       next: (products) => {
         this.productList = products;
         this.isLoadingProducts = false;
+        console.log(this.productList)
       },
     });
   }
@@ -65,10 +72,33 @@ export class HomePageComponent implements OnInit {
     })
   }
 
-  showModal(id: Number) {
+  obtenerShoppingCartId(id: Number) {
+    this.isLoadingCart = true;
+
+    this.tiendaService.getShoppingCartId(id).subscribe({
+      next: (shoppingCart) => {
+        this.shoppingCart = shoppingCart;
+        this.productsShoppingCart = this.shoppingCart.products;
+        this.isLoadingCart = false;
+        console.log(this.productsShoppingCart);
+
+      }
+    })
+  }
+
+  existe(id: Number) {
+    for (let i = 0; i < this.productsShoppingCart.length; i++) {
+      if (id === this.productsShoppingCart[i].id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  showModal(id: Number, stock: Number) {
     Swal.fire({
       title: `Agregar
-      <input id="cantidad" type="number" value="1" style="text-align:center">
+      <input id="cantidad" type="number" value="1" style="text-align:center" min="1" max="`+ stock + `">
       Productos`,
       icon: "info",
       showCloseButton: true,

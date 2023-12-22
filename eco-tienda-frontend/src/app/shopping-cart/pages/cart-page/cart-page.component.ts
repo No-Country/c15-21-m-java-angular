@@ -56,7 +56,7 @@ export class CartPageComponent {
         this.shoppingCart = shoppingCart;
         this.productsShoppingCart = this.shoppingCart.products;
         this.isLoadingCart = false;
-
+        console.log(this.productsShoppingCart);
 
       }
     })

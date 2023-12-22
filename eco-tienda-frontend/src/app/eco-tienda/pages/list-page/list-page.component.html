@@ -47,7 +47,12 @@
               ${{ product.precio }}
             </p>
 
-            <a  (click)="showModal(product.id)"
+            <div class="flex flex-col">
+              <h1 *ngIf="product.stock<10" class="text-lg font-bold text-red-800"> Agotado</h1>
+              <h1 *ngIf="existe(product.id)" class="font-bold text-et-turmeric">Producto agregado</h1>
+            </div>
+
+            <a *ngIf="product.stock>9 && !existe(product.id)" (click)="showModal(product.id, product.stock)"
               class="p-2 text-gray-700 cursor-pointer hover:scale-125 transition bg-et-turmeric rounded-tl-lg rounded-br-lg">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">

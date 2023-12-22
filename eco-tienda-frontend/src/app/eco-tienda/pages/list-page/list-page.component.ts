@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { EcoTiendaService } from '../../../services/eco-tienda.service';
 import { ProductsResponse } from '../../../interfaces/products.interface';
 import Swal from 'sweetalert2';
+import { Products } from 'src/app/interfaces/shoping-cart.interface';
 
 @Component({
   selector: 'app-list-page',
@@ -14,8 +15,16 @@ export class ListPageComponent implements OnInit {
 
   public isLoading: boolean = false;
 
+  
+  public productsShoppingCart: Products[] = [];
+  public shoppingCart: any = { products: [] };
+  public ShoppingCartId = Number(localStorage.getItem('cartId'));
+  public isLoadingCart: boolean = false;
+
   ngOnInit(): void {
     this.obtenerProductsList();
+    
+    this.obtenerShoppingCartId(this.ShoppingCartId)
   }
 
   obtenerProductsList() {
@@ -28,7 +37,6 @@ export class ListPageComponent implements OnInit {
     });
   }
 
-  public shoppingCart: any = [];
   agregarAlShoppingCart(cart: Number, product: Number, quantity: Number) {
     this.tiendaService.addToShoppingCart(cart, product, quantity).subscribe({
       next: (shoppingCart) => {
@@ -42,10 +50,33 @@ export class ListPageComponent implements OnInit {
     })
   }
 
-  showModal(id: Number) {
+  obtenerShoppingCartId(id: Number) {
+    this.isLoadingCart = true;
+
+    this.tiendaService.getShoppingCartId(id).subscribe({
+      next: (shoppingCart) => {
+        this.shoppingCart = shoppingCart;
+        this.productsShoppingCart = this.shoppingCart.products;
+        this.isLoadingCart = false;
+        console.log(this.productsShoppingCart);
+
+      }
+    })
+  }
+
+  existe(id: Number) {
+    for (let i = 0; i < this.productsShoppingCart.length; i++) {
+      if (id === this.productsShoppingCart[i].id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  showModal(id: Number, stock: Number) {
     Swal.fire({
       title: `Agregar
-      <input id="cantidad" type="number" value="1" style="text-align:center">
+      <input id="cantidad" type="number" value="1" style="text-align:center" min="1" max="`+ stock + `">
       Productos`,
       icon: "info",
       showCloseButton: true,
