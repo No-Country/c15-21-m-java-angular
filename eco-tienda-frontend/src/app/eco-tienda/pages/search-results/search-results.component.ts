@@ -14,18 +14,20 @@ export class SearchResultsComponent implements OnInit {
   searchResults$: Observable<ResultsResponse[]> =
     this.searchService.searchResults$;
   results: ResultsResponse[] = [];
-  public isLoading: boolean = false;
+  public isLoadingResults: boolean = false;
 
   public shoppingCart: any = [];
 
   private tiendaService = inject(EcoTiendaService);
 
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService) { }
 
   ngOnInit(): void {
+    this.isLoadingResults = true;
     this.searchService.searchResults$.subscribe((results) => {
       console.log('Resultados de la búsqueda:', results);
       this.results = results;
+      this.isLoadingResults = false;
     });
   }
 

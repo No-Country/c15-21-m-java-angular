@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { EcoTiendaService } from 'src/app/services/eco-tienda.service';
+import { CategorySharedService } from 'src/app/services/categoryShared.service';
 import { ProductsResponse } from '../../../interfaces/products.interface';
 import { CategoriesResponse } from 'src/app/interfaces/categories.interface';
 import Swal from 'sweetalert2';
@@ -11,6 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class HomePageComponent implements OnInit {
   private tiendaService = inject(EcoTiendaService);
+  private categorySharedService = inject(CategorySharedService);
 
   public productList: ProductsResponse[] = [];
   public categoriesList: CategoriesResponse[] = [];
@@ -50,6 +52,10 @@ export class HomePageComponent implements OnInit {
         console.log(categories);
       },
     });
+  }
+
+  onCategoriaClick(categoria: CategoriesResponse): void {
+    this.categorySharedService.actualizarCategoriaSeleccionada(categoria);
   }
 
   agregarAlShoppingCart(cart: Number, product: Number, quantity: Number) {

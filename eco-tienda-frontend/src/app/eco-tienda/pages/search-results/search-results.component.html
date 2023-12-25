@@ -1,8 +1,4 @@
-<ng-template #loading>
-  <shared-loader></shared-loader>
-</ng-template>
-
-<section *ngIf="!isLoading; else loading" class="container mx-auto my-5">
+<section class="container mx-auto my-5">
   <div class="container flex flex-col items-center mx-auto my-3">
     <div class="flex flex-col px-6 py-2 text-center w-10/12 mx-auto">
       <h2 class="text-2xl font-medium leading-tight lg:text-3xl text-gray-800">
@@ -10,11 +6,13 @@
       </h2>
     </div>
   </div>
+  <!-- loader -->
+  <shared-loader *ngIf="isLoadingResults"></shared-loader>
   <!-- Results Search Cards -->
   <section>
     <div *ngIf="searchResults$ | async as searchResults">
       <div
-        class="mx-auto grid max-w-6xl grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        class="mx-auto grid max-w-6xl grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
       >
         <article
           *ngFor="let product of searchResults"

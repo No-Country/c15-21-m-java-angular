@@ -12,8 +12,8 @@
       id="order"
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
     >
-      <option selected>Seleccione</option>
-      <option value="0">Más vendidos</option>
+      <option selected [routerLink]="['/eco-tienda/list']">Seleccione</option>
+      <option value="0"[routerLink]="['/eco-tienda/destacado']">Más vendidos</option>
       <option value="1">Alfabéticamente</option>
       <option value="2">Entre 2.00 - 5.00</option>
       <option value="3">Más de 5.00</option>

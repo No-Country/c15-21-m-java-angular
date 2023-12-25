@@ -38,6 +38,7 @@ export class EcoTiendaService {
     );
   }
 
+
   // searchBox
   searchProductByBox(keyword: string): Observable<ResultsResponse[]> {
     const url = `${this.url}/buscar/productos?palabraClave=${keyword}`;
