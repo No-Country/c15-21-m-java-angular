@@ -1,3 +1,3 @@
 export const environments = {
-  baseUrl: 'https://c15-21-m-java-angular-production.up.railway.app',
+  baseUrl: 'https://ecotienda-no-country.onrender.com',
 };
